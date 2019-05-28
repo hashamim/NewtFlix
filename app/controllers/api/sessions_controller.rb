@@ -14,6 +14,7 @@ class Api::SessionsController < ApplicationController
             render json: {text: "logged out"}
         else
             render json: {text: "error logging out"}
+        end
     end
 
     def user_params
