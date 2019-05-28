@@ -1,6 +1,6 @@
 class Api::SessionsController < ApplicationController
     def create
-        @user = User.find_by_credentials(user_params[:email] user_params[:password])
+        @user = User.find_by_credentials(user_params[:email] ,user_params[:password])
         if @user
             render :create
         else
