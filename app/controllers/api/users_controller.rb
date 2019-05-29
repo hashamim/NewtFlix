@@ -11,11 +11,12 @@ class Api::UsersController < ApplicationController
 
     def index #for development only
         @users = User.all
+        @curr_user = current_user
         render :index
     end
 
     def user_params
-        params.require(:user).permit(:email,:password)
+        params.require(:user).permit(:email,:password, :profile)
     end
 end
 

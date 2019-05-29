@@ -5,3 +5,5 @@ json.users do
         end
     end
 end
+debugger
+json.current_user current_user
