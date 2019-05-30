@@ -7,6 +7,6 @@ if (process.env.NODE_ENV !== 'production'){
     const { logger } = require('redux-logger')
     middleWares.push(logger);
 }
-export default () => (
-    createStore(rootReducer,applyMiddleware(...middleWares))
+export default (preloadedState) => (
+    createStore(rootReducer, preloadedState, applyMiddleware(...middleWares))
 );

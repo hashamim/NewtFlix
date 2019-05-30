@@ -4,7 +4,6 @@ const defaultState = {
     id: null,
 }
 export default (state = defaultState, action) => {
-    debugger
     Object.freeze(state);
     switch(action.type){
         case RECEIVE_USER:

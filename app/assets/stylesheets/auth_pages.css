@@ -1,0 +1,204 @@
+.auth-container {
+    height: 100vh;
+}
+
+.session-background {
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+    position: absolute;
+    top: 0;
+    background-size: cover;
+}
+
+
+
+.auth-header {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+}
+
+.a-nflogo {
+    margin-left: 3%;
+    height: 50%;
+    display: block;
+}
+
+.img-nflogo {
+    height: 100%;
+}
+
+.auth-header button {
+    background-color: red;
+    margin: 0 3% 0;
+    padding: 7px 17px;
+    border-radius: 3px;
+    border-style: none;
+}
+.auth-header button a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+.auth-footer {
+    width: 100%;
+    color: white;
+    background-color: rgb(0,0,0);
+    padding: 30px 0;
+    position: absolute;
+    top: 100vh;
+}
+
+.splash-content {
+    color: white;
+    width: 100%;
+    /* position: absolute; */
+    /* bottom: 4%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.splash-content .ctn-main h1 {
+    width: 100%;
+    font-size: 60px;
+    padding-bottom: 30px;
+    font-weight: 700;
+}
+
+.splash-content .ctn-main p {
+    width: 100%;
+    font-size: 24px;
+    padding-bottom: 30px;
+    font-weight: 400;
+}
+
+.splash-content button {
+    background-color: rgb(229,9,20);
+    background-image: linear-gradient(to bottom,#e50914,#db0510);
+    padding: 24px 48px;
+    border-radius: 2px;
+    border-style: none;
+    box-shadow: 0 1px black;
+    margin-bottom: 40px;
+    margin-top: 12px;
+
+    font-size: 24px;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+}
+
+.splash-content span {
+    font-size: 20px;
+}
+
+.splash-content span a {
+    text-decoration: underline;
+    color: white;
+}
+
+.splash-background-filter {
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    background-image: radial-gradient(rgba(0,0,0,0.25), rgba(0,0,0,1));
+    top: 0;
+}
+
+.session-background-filter {
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    top: 0;
+}
+
+.session-form-container {
+    background-color: rgba(0,0,0,0.75);
+    border-radius: 4px;
+    min-height: 660px;
+    padding: 60px 68px 40px;
+    width: 450px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.session-form {
+    width: 100%;
+}
+.session-form * {
+    display: block;
+    width: 100%;
+    color: white;
+    border: none;
+    border-radius: 4px;
+
+}
+
+.session-form > h1 {
+    height: 40px;
+    margin-bottom: 28px;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.session-form > label {
+    height: 66px;
+    padding-bottom: 16px;
+}
+
+.session-form input {
+    width: 100%;
+    height: 50px;
+    padding: 8px 20px 8px;
+    background-color: rgb(51, 51, 51);
+}
+
+.session-form input:focus {
+    outline: 0;
+    background-color: rgb(69,69,69);
+    font-size: 16px;
+}
+
+.session-form button {
+    background-color: red;
+    margin: 24px 0 12px;
+    padding: 16px 0 16px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+
+
+.session-form-container > span {
+    color: #737373;
+    width: 100%;
+}
+
+.session-form-container a {
+    color: white;
+    text-decoration: none;
+}
+
+.session-form-container a:hover {
+    text-decoration: underline;
+}
+

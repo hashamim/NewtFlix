@@ -21,18 +21,16 @@ export const receiveSessionErrors = ({errors}) => ({
 }) 
 //thunk action creators
 export const login = (formUser) => dispatch => (
-    SessionApiUtils.createSession(formUser).then((response) => dispatch(receiveUser(response)), testFunc)
+    SessionApiUtils.createSession(formUser).then((response) => dispatch(receiveUser(response)), 
+        ({responseJSON}) => dispatch(receiveSessionErrors(responseJSON)))
 );
 
 export const signup = (formUser) => dispatch => (
-    SessionApiUtils.createUser(formUser).then(response => dispatch(receiveUser(response)), testFunc)
+    SessionApiUtils.createUser(formUser).then(response => dispatch(receiveUser(response)), 
+        ({responseJSON}) => dispatch(receiveSessionErrors(responseJSON)))
 );
 
 export const logout = () => dispatch => (
-    SessionApiUtils.destroySession().then(() => dispatch(removeUser()), testFunc)
+    SessionApiUtils.destroySession().then(() => dispatch(removeUser()), 
+        ({responseJSON}) => dispatch(receiveSessionErrors(responseJSON)))
 );
-
-const testFunc = ({responseJSON}) => {
-    debugger
-    console.log(responseJSON);
-}
