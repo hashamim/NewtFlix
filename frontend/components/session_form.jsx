@@ -16,7 +16,8 @@ class SessionForm extends React.Component{
             email: "",
             password: "",
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.demoLogin = this.demoLogin.bind(this);
     }
     handleSubmit(e){
         e.preventDefault();
@@ -30,6 +31,11 @@ class SessionForm extends React.Component{
             })
         }
     }
+    demoLogin(e){
+        e.preventDefault();
+        this.props.action({email: "email@example.com", password: "password"});
+    }
+
     render(){
         const profile = this.props.formType === SIGNUP_TEXT ?
             (
@@ -44,6 +50,9 @@ class SessionForm extends React.Component{
                 </label>
             ) :
             "";
+        const demoLogin = this.props.formType !== SIGNUP_TEXT ?
+            <button className="demo-login" onClick={this.demoLogin}>Log In to the Demo</button> :
+            null;
         const formTypeString = this.props.formType === SIGNUP_TEXT ? "Sign Up" : "Sign In";
         const altSession = (this.props.formType === SIGNUP_TEXT ?
             <span>Already Have an Account? <Link to="/login">Sign In</Link>.</span> :
@@ -78,6 +87,7 @@ class SessionForm extends React.Component{
                         </label>
                         <button>{formTypeString}</button>
                     </form>
+                    {demoLogin}
                     {altSession}
                 </div>
             </>

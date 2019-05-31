@@ -24,7 +24,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 3;
+    z-index: 1;
 }
 
 .a-nflogo {
@@ -60,9 +60,9 @@
 
 .splash-content {
     color: white;
-    width: 100%;
-    /* position: absolute; */
-    /* bottom: 4%; */
+    /* width: 100%;
+    position: absolute; */
+    bottom: 4%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -177,7 +177,7 @@
     font-size: 16px;
 }
 
-.session-form button {
+.session-form-container button {
     background-color: red;
     margin: 24px 0 12px;
     padding: 16px 0 16px;
@@ -185,7 +185,12 @@
     font-weight: 700;
 }
 
-
+.demo-login {
+    width: 100%;
+    border-style: none;
+    color: white;
+    border-radius: 4px;
+}
 
 
 .session-form-container > span {
