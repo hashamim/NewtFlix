@@ -34,7 +34,7 @@ export default ({match}) => {
                     </div>
                     <div className="btn-wrapper">
                         <Link to="/signup">
-                            <button>TRY 30 DAYS FREE</button>
+                            <button>TRY 30 DAYS FREE.</button>
                         </Link>
                     </div>
                     <span>
