@@ -172,9 +172,16 @@
 }
 
 .session-form .input-error {
-    box-shadow: 0 2px orange;
+    box-shadow: 0 2px #e87c03;
 }
 
+.session-form .error-text {
+    background-color: #e87c03;
+    font-size: 14px;
+    padding: 10px 20px;
+    vertical-align: middle;
+    margin-bottom: 16px;
+}
 .session-form input:focus {
     outline: 0;
     background-color: rgb(69,69,69);

@@ -4,16 +4,18 @@ import LoginForm from './login_form_container';
 import SignupForm from './signup_form_container';
 import { Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-export default ({match}) => {
+import { login } from '../actions/session_actions';
+import { connect } from 'react-redux';
+const Splash = (props) => {
     const bgStyle = {
         backgroundImage: `url("${window.formBackground}")`
     }
-    const headerButton = match.isExact ? <button><Link to="/login">Sign In</Link></button> : null;
+    const headerButton = props.match.isExact ? <button><Link to="/login">Sign In</Link></button> : null;
     return <div className="auth-container">
         <div className="auth-header">
-            <a className="a-nflogo">
+            <Link to="/" className="a-nflogo">
                 <img className="img-nflogo" src={window.netflixLogo} />
-            </a>
+            </Link>
             {headerButton}
         </div>
         <div className="session-background" style={bgStyle}></div>
@@ -33,9 +35,9 @@ export default ({match}) => {
                         </p>
                     </div>
                     <div className="btn-wrapper">
-                        <Link to="/signup">
+                        <a onClick={props.demoLogin}>
                             <button>TRY 30 DAYS FREE</button>
-                        </Link>
+                        </a>
                     </div>
                     <span>
                         Have an account? <Link to="/login">Sign In</Link>
@@ -52,3 +54,9 @@ export default ({match}) => {
         </div>
     </div>
 }
+
+const mdp = (dispatch) => ({
+    demoLogin: () => dispatch(login({email: "email@example.com", password: "password"})),
+});
+
+export default connect(null,mdp)(Splash);

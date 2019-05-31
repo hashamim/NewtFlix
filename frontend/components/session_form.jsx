@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { resetErrors } from '../actions/session_actions';
 const SIGNUP_TEXT = "Sign Up"; ////MAKE SURE THIS MATCHES IN signup_form_component.js
 class SessionForm extends React.Component{
     //props needed:
@@ -19,6 +20,9 @@ class SessionForm extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.demoLogin = this.demoLogin.bind(this);
     }
+    componentDidMount(){
+        this.props.resetErrors();
+    }
     handleSubmit(e){
         e.preventDefault();
         this.props.action(this.state);
@@ -33,18 +37,33 @@ class SessionForm extends React.Component{
     }
     demoLogin(e){
         e.preventDefault();
-        this.props.action({email: "email@example.com", password: "password"});
+        if(this.props.formType === SIGNUP_TEXT){
+            <Redirect to='/login' />
+        }else {
+            this.props.action({email: "email@example.com", password: "password"});
+        }
     }
 
     render(){
-        const errorClassName = this.props.errors.length > 0 ? "input-error" : "";
+        const errorString = this.props.errors.length > 0 ?
+            <p className="error-text">{this.props.errors.join(". ")}</p> :
+            null;
+        const inputError = (field) => {
+            let isTrue = false;
+            this.props.errors.forEach((str)=> {
+                if(str.includes(field)){
+                    isTrue = true;
+                }
+            })
+            return isTrue;
+        }
         debugger
         const profile = this.props.formType === SIGNUP_TEXT ?
             (
                 <label >
                     <input 
                         type="text" 
-                        className="profile" 
+                        className={inputError("rofile") ? "input-error" : ""} 
                         onChange={this.handleChange('profile')} 
                         value={this.state.profile}
                         placeholder="Enter Profile Name"
@@ -52,7 +71,9 @@ class SessionForm extends React.Component{
                 </label>
             ) :
             "";
-        const demoLogin = <button className="demo-login" onClick={this.demoLogin}>Log In to the Demo</button>;
+        const demoLogin = this.props.formType === SIGNUP_TEXT ?
+            null :
+            <button className="demo-login" onClick={this.demoLogin}>Log In to the Demo</button>;
         const formTypeString = this.props.formType === SIGNUP_TEXT ? "Sign Up" : "Sign In";
         const altSession = (this.props.formType === SIGNUP_TEXT ?
             <span>Already Have an Account? <Link to="/login">Sign In</Link>.</span> :
@@ -64,11 +85,12 @@ class SessionForm extends React.Component{
                 <div className="session-form-container">
                     <form className="session-form" onSubmit={this.handleSubmit}>
                         <h1>{formTypeString}</h1>
+                        {errorString}
                         {profile}
                         <label>
                             <input
                                 type="text"
-                                className={errorClassName}
+                                className={inputError("mail") ? "input-error" : ""} 
                                 onChange={this.handleChange('email')}
                                 value={this.state.email}
                                 placeholder="Enter Email Address"
@@ -77,7 +99,7 @@ class SessionForm extends React.Component{
                         <label>
                             <input
                                 type="password"
-                                className={"password " + errorClassName}
+                                className={inputError("assword") ? "input-error" : ""} 
                                 onChange={this.handleChange('password')}
                                 value={this.state.password}
                                 placeholder="Enter Password"

@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
             login!(@user)
             render '/api/users/create'
         else
-            if User.find_by(id: user_params[:id])
+            if User.find_by(email: user_params[:email])
                 render json: {errors: ["Invalid password"]}, status: 422
             else
                 render(
