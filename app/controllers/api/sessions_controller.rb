@@ -5,7 +5,15 @@ class Api::SessionsController < ApplicationController
             login!(@user)
             render '/api/users/create'
         else
-            render json: {errors: ["Invalid Username or Password"]}, status: 420
+            if User.find_by(id: user_params[:id])
+                render json: {errors: ["Invalid password"]}, status: 422
+            else
+                render(
+                    json: {
+                        errors: ["Sorry, we can't find an account with this email address. Please try again or create a new account."]
+                    }, 
+                    status: 422)
+            end
         end
     end
 
@@ -14,7 +22,7 @@ class Api::SessionsController < ApplicationController
             logout!
             render json: {text: "logged out"}
         else
-            render json: {errors: ["error logging out"]}, status: 420
+            render json: {errors: ["error logging out"]}, status: 422
         end
     end
 

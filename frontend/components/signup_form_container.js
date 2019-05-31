@@ -4,8 +4,9 @@ import SessionForm from './session_form';
 
 const SIGNUP_TEXT = "Sign Up";
 
-const msp = () => ({
+const msp = (state) => ({
     formType: SIGNUP_TEXT,
+    errors: state.errors.sessionErrors,
 })
 
 const mdp = (dispatch) => ({

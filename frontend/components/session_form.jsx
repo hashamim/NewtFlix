@@ -37,6 +37,8 @@ class SessionForm extends React.Component{
     }
 
     render(){
+        const errorClassName = this.props.errors.length > 0 ? "input-error" : "";
+        debugger
         const profile = this.props.formType === SIGNUP_TEXT ?
             (
                 <label >
@@ -50,16 +52,12 @@ class SessionForm extends React.Component{
                 </label>
             ) :
             "";
-        const demoLogin = this.props.formType !== SIGNUP_TEXT ?
-            <button className="demo-login" onClick={this.demoLogin}>Log In to the Demo</button> :
-            null;
+        const demoLogin = <button className="demo-login" onClick={this.demoLogin}>Log In to the Demo</button>;
         const formTypeString = this.props.formType === SIGNUP_TEXT ? "Sign Up" : "Sign In";
         const altSession = (this.props.formType === SIGNUP_TEXT ?
             <span>Already Have an Account? <Link to="/login">Sign In</Link>.</span> :
             <span>New to NetFlix? <Link to="/signup">Sign Up</Link>.</span>
         );
-
-
         return (
             <>
                 <div className="session-background-filter"></div>
@@ -70,7 +68,7 @@ class SessionForm extends React.Component{
                         <label>
                             <input
                                 type="text"
-                                className="email"
+                                className={errorClassName}
                                 onChange={this.handleChange('email')}
                                 value={this.state.email}
                                 placeholder="Enter Email Address"
@@ -79,7 +77,7 @@ class SessionForm extends React.Component{
                         <label>
                             <input
                                 type="password"
-                                className="password"
+                                className={"password " + errorClassName}
                                 onChange={this.handleChange('password')}
                                 value={this.state.password}
                                 placeholder="Enter Password"
