@@ -38,6 +38,7 @@ const Splash = (props) => {
                         <a onClick={props.demoLogin}>
                             <button>TRY THE DEMO</button>
                         </a>
+
                     </div>
                     <span>
                         Have an account? <Link to="/login">Sign In</Link>
