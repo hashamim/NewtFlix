@@ -36,7 +36,7 @@ const Splash = (props) => {
                     </div>
                     <div className="btn-wrapper">
                         <a onClick={props.demoLogin}>
-                            <button>TRY 30 DAYS FREE</button>
+                            <button>TRY THE DEMO</button>
                         </a>
                     </div>
                     <span>
