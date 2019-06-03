@@ -1,7 +1,9 @@
+
 json.shows do
     json.set! @show.id do
         json.extract! @show, :id, :title, :maturity_rating, :description
         json.title_card_url url_for(@show.title_card)
+        json.video_url url_for(@show.video)
         json.genre_ids @show.genres.pluck(:id)
         json.actor_ids @show.actors.pluck(:id)
     end
