@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: show_genres
+#
+#  id         :bigint           not null, primary key
+#  show_id    :bigint
+#  genre_id   :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  show: one
+  genre: one
+
+two:
+  show: two
+  genre: two

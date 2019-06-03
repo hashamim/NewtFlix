@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_125533) do
+ActiveRecord::Schema.define(version: 2019_06_03_011008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,46 @@ ActiveRecord::Schema.define(version: 2019_05_31_125533) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "actors", force: :cascade do |t|
+    t.string "name", null: false
+    t.index ["name"], name: "index_actors_on_name", unique: true
+  end
+
+  create_table "castings", force: :cascade do |t|
+    t.bigint "show_id"
+    t.bigint "actor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_castings_on_actor_id"
+    t.index ["show_id"], name: "index_castings_on_show_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_genres_on_name", unique: true
+  end
+
+  create_table "show_genres", force: :cascade do |t|
+    t.bigint "show_id"
+    t.bigint "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_show_genres_on_genre_id"
+    t.index ["show_id"], name: "index_show_genres_on_show_id"
+  end
+
+  create_table "shows", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "year", null: false
+    t.string "maturity_rating", null: false
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_shows_on_title", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "profile", null: false
     t.string "email", null: false
@@ -48,4 +88,8 @@ ActiveRecord::Schema.define(version: 2019_05_31_125533) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "castings", "actors"
+  add_foreign_key "castings", "shows"
+  add_foreign_key "show_genres", "genres"
+  add_foreign_key "show_genres", "shows"
 end
