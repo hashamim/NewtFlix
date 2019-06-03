@@ -57,7 +57,6 @@ class SessionForm extends React.Component{
             })
             return isTrue;
         }
-        debugger
         const profile = this.props.formType === SIGNUP_TEXT ?
             (
                 <label >
