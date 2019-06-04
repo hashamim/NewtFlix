@@ -42,20 +42,6 @@ class Main extends React.Component{
                 <Switch>
                     <Route component={Browse} />
                 </Switch>
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
-                <div className="item" />
             </div>
         )
     }

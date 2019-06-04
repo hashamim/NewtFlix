@@ -54,3 +54,33 @@
   background: red;
   margin: 10px;
 }
+
+.genre-container {
+    width: 100%;
+    margin: 10px 0;
+    padding: 0 4%;
+    height: 130px;
+    background-color: #141414;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.genre-container.active {
+    background-color: red;
+}
+
+.show-container {
+    height: 100%;
+    background-color: blue;
+    transition: 250ms;
+}
+
+.show-container img {
+    height: 100%
+}
+
+.show-container.hovered {
+    height: 150%;
+    transition-duration: 400ms;
+}
