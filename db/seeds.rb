@@ -8,6 +8,8 @@
 
 require "open-uri"
 
+User.create(profile: "Demo", email: "email@example.com", password: "password")
+
 videos = {}
 videos[:stranger_things] = open("https://newtflix-dev.s3.amazonaws.com/Y481W8bavTg5uasHf6TzBRmD")
 videos[:house_of_cards] = open("https://newtflix-dev.s3.amazonaws.com/House+of+Cards++Official+Trailer+%5BHD%5D++Netflix.mp4")
