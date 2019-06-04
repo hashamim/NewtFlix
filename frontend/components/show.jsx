@@ -18,14 +18,11 @@ class Show extends React.Component{
     }
     changeToHovered(){
         this.setState({ hovered: true })
-        console.log("hovered")
     }
     changeToUnHovered(){
-        // this.setState({ hovered: false })
-        console.log("unnnnhovered")
+        this.setState({ hovered: false })
     }
     changeMuted(e){
-        debugger
         if(this.state.muted){
             this.setState({muted: false});
         } else {
@@ -34,7 +31,6 @@ class Show extends React.Component{
         }
     }
     divClick(e){
-        debugger
         if(e.target.className === "show-interface"){
             <Redirect to={`/watch/${this.props.id}`}/>
         }
