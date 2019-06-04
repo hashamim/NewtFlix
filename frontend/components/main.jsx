@@ -55,4 +55,4 @@ class Main extends React.Component{
 const mdp = (dispatch) => ({
     logout: () => dispatch(logout()),
 })
-export default connect(null,mdp)(Main);
+export default withRouter(connect(null,mdp)(Main));

@@ -1,7 +1,7 @@
 import React from 'react';
 import { getShow } from '../actions/show_actions';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 class Show extends React.Component{
     constructor(props){
         super(props);
@@ -24,7 +24,7 @@ class Show extends React.Component{
         // this.setState({ hovered: false })
         console.log("unnnnhovered")
     }
-    changeMuted(){
+    changeMuted(e){
         debugger
         if(this.state.muted){
             this.setState({muted: false});
@@ -33,9 +33,15 @@ class Show extends React.Component{
 
         }
     }
+    divClick(e){
+        debugger
+        if(e.target.className === "show-interface"){
+            <Redirect to={`/watch/${this.props.id}`}/>
+        }
+    }
     render(){
         const muteButton = <img onClick={()=>this.changeMuted()}
-            src={this.myRef.current && this.state.muted ? window.volume_image : window.mute_image} />;
+            src={this.myRef.current && !this.state.muted ? window.mute_image : window.volume_image} />;
         let player = null;
         if(this.myRef.current){
             this.myRef.current.muted = this.state.muted;
@@ -52,7 +58,7 @@ class Show extends React.Component{
                 >
                 Your Browser Does Not Support This Video
             </video>
-            <div className="show-interface" onClick={divClick}>
+            <div className="show-interface" onClick={(e)=>this.divClick(e)}>
                 <div className="show-quick-interface">
                     <div className="show-info">
                         <Link to={`/watch/${this.props.id}`}>
@@ -92,4 +98,4 @@ const mdp = (dispatch, ownProps) => ({
     fetchGenres: () => dispatch(getShow(ownProps.id))
 })
 
-export default connect(msp,mdp)(Show);
+export default withRouter(connect(msp,mdp)(Show));
