@@ -9,7 +9,14 @@
     transition: 0.3s;
     padding: 0 4%;
     align-items: center;
+    justify-content: space-between;
 
+}
+
+.priv-header-left {
+    height: 100%;
+    width: 60%;
+    display: flex;
 }
 
 .priv-nflogo {
@@ -20,20 +27,19 @@
     background-color: transparent;
     transition: 0.3s;
 }
-.priv-header > a{
+.priv-logo-container{
     height: 100%;
-}
-
-.priv-header > * {
     display: flex;
     align-items: center;
 }
 
+
 .priv-nav-bar {
     padding-inline-start: 30px;
     display: flex;
-    width: 30%;
     justify-content: space-around;
+    align-items: center;
+    min-width: 50%;
 }
 
 .priv-nav-bar > a {
@@ -48,6 +54,14 @@
     color: white;
     font-weight: 700;
     cursor: default;
+}
+
+.priv-header-resources .profile-dropdown {
+    size: 40px 40px;
+}
+.priv-header-resources .profile-dropdown {
+    max-width: 100%;
+    max-height: 100%;
 }
 .item {
   height: 100px;
@@ -71,16 +85,83 @@
 }
 
 .show-container {
+    position: relative;
     height: 100%;
     background-color: blue;
     transition: 250ms;
 }
 
-.show-container img {
+.show-container .title-card {
     height: 100%
 }
 
 .show-container.hovered {
     height: 150%;
     transition-duration: 400ms;
+}
+
+.show-interface {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.show-quick-interface {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.show-info .play-icon {
+    height: 30px;
+    width: 30px;
+    transition: 200ms;
+}
+.show-info .play-icon:hover {
+    height: 32px;
+    width: 32px;
+    transition: 200ms;
+}
+
+.show-info {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-left: 2px;
+}
+.show-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-right: 2px;
+    align-items: flex-end;
+}
+
+.show-actions img {
+    height: 25px;
+    width: 25px;
+    transition: 200ms;
+    cursor: pointer;
+    margin: 2px 0;
+}
+
+.show-actions img:hover {
+    height: 27px;
+    width: 27px;
+    transition: 200ms;
+}
+
+.show-video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
 }

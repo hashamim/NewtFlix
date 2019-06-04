@@ -27,7 +27,7 @@ class Watch extends React.Component{
                 <video
                     ref={this.myRef} 
                     width="100%" 
-                    autoPlay controls muted
+                    controls muted={true}
                     src={this.props.show ? this.props.show.video_url : null} 
                     type="video/mp4" 
                     onFocus={()=> console.log("Focused!!!")} 
