@@ -1,5 +1,4 @@
 const path = require('path');
-debugger
 module.exports = {
     entry: './frontend/newtflix.jsx',
     output: {

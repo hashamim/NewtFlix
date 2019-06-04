@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "open-uri"
+Show.destroy_all
+User.destroy_all
+Genre.destroy_all
 
 User.create(profile: "Demo", email: "email@example.com", password: "password")
 

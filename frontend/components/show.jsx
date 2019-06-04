@@ -16,7 +16,6 @@ class Show extends React.Component{
         this.setState({ hovered: false })
     }
     render(){
-        debugger
         const hoveredElements = <>
             <video />
             <div className="show-interface"></div>
