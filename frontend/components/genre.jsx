@@ -4,7 +4,7 @@ class Genre extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            currentShow: null,
+            currentShow: null, //used for collapsing div
         }
     }
 
@@ -12,8 +12,9 @@ class Genre extends React.Component{
         
         return (
             <>
-                <div className={`genre-container ${this.props.currentGenre ? "active" : ""}`} onClick={this.props.setThisGenre}>
-                    {this.props.showsContained.map((show, ind) => <Show key={ind} {...show}/>)}
+                <h1 className="genre-title">{this.props.name}</h1> {/* Make Clickable */}
+                <div className={`row-container ${this.props.currentGenre ? "active" : ""}`} onClick={this.props.setThisGenre}>
+                    {this.props.showsContained.map((show, ind) => <Show key={ind} {...show} setParentGenre={this.props.setThisGenre}/>)}
                 </div>
                 <div className="collapsable">
 

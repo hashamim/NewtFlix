@@ -19,6 +19,7 @@ class Show extends React.Component{
     }
     changeToHovered(){
         this.setState({ hovered: true })
+        this.props.setParentGenre();
     }
     changeToUnHovered(){
         this.setState({ hovered: false })
@@ -32,7 +33,7 @@ class Show extends React.Component{
         }
     }
     divClick(e){
-        if(e.target.className === "show-quick-interface"){
+        if(e.target.className === "show-quick-interface" || e.target.className === "show-interface"){
             this.props.history.push(`/watch/${this.props.id}`)
         }
     }

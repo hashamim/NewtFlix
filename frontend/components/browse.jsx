@@ -16,7 +16,6 @@ class Browse extends React.Component {
     }
     componentDidMount(){
         this.props.fetchShows();
-        // this.props.fetchShow(Object.keys(this.props.shows)[0]);
     }
     setCurrentGenre(ind){
         this.setState({currentGenre: ind});
@@ -40,7 +39,7 @@ class Browse extends React.Component {
         const muteButton = <img onClick={() => this.changeMuted()}
             src={this.myRef.current && !this.state.muted ? window.mute_image : window.volume_image} />;
         const genreRows = this.props.genres.map((genre, ind) => 
-            <Genre key={ind} currentGenre={this.state.currentGenre === ind ? true : false} setThisGenre={() => this.setCurrentGenre(ind)} showsContained={genre.show_ids.map((showId)=> this.props.shows[showId])}/>)
+            <Genre key={ind} name={genre.name} currentGenre={this.state.currentGenre === ind ? true : false} setThisGenre={() => this.setCurrentGenre(ind)} showsContained={genre.show_ids.map((showId)=> this.props.shows[showId])}/>)
         const file = "/Users/hasnainshamim/Downloads/cat_in_the_sun.mp4"
         return <div className="content-main">
             <div className="video-container">
