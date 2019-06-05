@@ -26,8 +26,8 @@ class Watch extends React.Component{
             <div className="test-div" onPointerEnter={() => console.log("POINTER DIV ENTERR")}>
                 <video
                     ref={this.myRef} 
-                    width="100%" 
-                    controls muted={true}
+                    width="100%"
+                    controls
                     src={this.props.show ? this.props.show.video_url : null} 
                     type="video/mp4" 
                     onFocus={()=> console.log("Focused!!!")} 

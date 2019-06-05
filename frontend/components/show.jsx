@@ -8,6 +8,7 @@ class Show extends React.Component{
         this.state = {
             hovered: false,
             muted: true,
+            redirectToPlayer: false,
         }
         this.myRef = React.createRef();
         this.changeToHovered = this.changeToHovered.bind(this);
@@ -31,8 +32,9 @@ class Show extends React.Component{
         }
     }
     divClick(e){
+        debugger
         if(e.target.className === "show-interface"){
-            <Redirect to={`/watch/${this.props.id}`}/>
+            this.props.history.push(`/watch/${this.props.id}`)
         }
     }
     render(){

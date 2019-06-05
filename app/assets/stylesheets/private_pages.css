@@ -69,6 +69,92 @@
   margin: 10px;
 }
 
+.content-main .video-container {
+    width: 100%;
+    position: relative;
+}
+
+.video-container .video-buttons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    padding: 0 4%;
+    padding-bottom: 15%;
+}
+
+.video-container .controls-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 40%;
+    position: relative;
+}
+
+.video-container .controls-left p {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.video-container .controls-left h1 {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.video-container .controls-left h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px 0 5px;
+}
+
+.video-container .controls-left .link-button button {
+    background-color: rgba(51,51,51,0.4);
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    border-style: none;
+    margin-right: 10px;
+    color: white;
+    padding: 10px 30px;
+}
+
+.video-container .controls-left .link-button button:hover {
+    background-color: white;
+    border-bottom: 3px;
+    color: black;
+}
+
+.video-container .controls-right {
+    font-size: 14px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.video-container .controls-right img {
+    height: 100%;
+    margin-right: 10px;
+}
+
+.video-container .controls-right img:hover {
+    height: 110%;
+}
+
+.video-container .controls-right span {
+    height: 100%;
+    background-color: rgba(51,51,51,0.6);
+    border-left: solid white 3px;
+    padding: 6px 42px 6px 10px;
+}
+
+/* GENRE STUFF */
 .genre-container {
     width: 100%;
     margin: 10px 0;
@@ -163,5 +249,4 @@
     top: 0;
     left: 0;
     z-index: 1;
-
 }
