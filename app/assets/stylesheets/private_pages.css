@@ -250,3 +250,28 @@
     left: 0;
     z-index: 1;
 }
+
+.watch-video-container {
+    position: relative;
+}
+
+.watch-video-container .video-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    font-size: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: flex-start;
+    height: 30%;
+    width: 30%;
+    
+}
+
+.watch-video-container .video-controls span {
+    margin-top: 10px;
+}
+.watch-video-container .video-controls i {
+    margin-right: 15px;
+}

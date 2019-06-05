@@ -7,6 +7,9 @@ import { getShow } from '../actions/show_actions';
 class Watch extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            controlsActive: false,
+        }
         this.myRef = React.createRef();
     }
     componentDidMount(){
@@ -17,25 +20,42 @@ class Watch extends React.Component{
         console.log(this.myRef.current.muted = false);
         }
     }
+    setActive(){
+        if(this.intervalId){
+            clearInterval(this.intervalId);
+        }
+        this.tick = true;
+        this.setState({ controlsActive: true });
+        this.intervalId = setInterval(() => this.unSetActive(), 1000);
+    }
+    unSetActive(){
+        debugger
+        if(this.tick === false){
+        this.setState({controlsActive: false});
+        clearInterval(this.intervalId);
+        } else {
+            this.tick = false;
+        }
+    }
     render(){
         let player = undefined;
         if (this.myRef.current){
             player = this.myRef.current  
         }
         return (
-            <div className="test-div" onPointerEnter={() => console.log("POINTER DIV ENTERR")}>
+            <div className="watch-video-container">
                 <video
                     ref={this.myRef} 
                     width="100%"
                     controls
                     src={this.props.show ? this.props.show.video_url : null} 
                     type="video/mp4" 
-                    onFocus={()=> console.log("Focused!!!")} 
-                    onBlur={()=> console.log("Blurreddd!!!")} 
-                    onPointerEnter={() => this.autoPlayVideo()}
-                    onPointerLeave={() => console.log("POINTER LEFFTT!!")}>
+                >
                     Your Browser Does Not Support This Video
                 </video>
+                <div className="video-controls" onPointerMove={() => this.setActive()}>
+                    {this.state.controlsActive ? <><i className="fas fa-arrow-left fa-2x"></i> <span>Back to Browse</span></> : null}
+                </div>
             </div>
         )
     }

@@ -13,11 +13,10 @@ class Browse extends React.Component {
             muted: true,
         }
         this.myRef = React.createRef();
-        // window.myRef = this.myRef;
     }
     componentDidMount(){
         this.props.fetchShows();
-        this.props.fetchShow(1);
+        // this.props.fetchShow(Object.keys(this.props.shows)[0]);
     }
     setCurrentGenre(ind){
         this.setState({currentGenre: ind});
@@ -35,7 +34,7 @@ class Browse extends React.Component {
         if (this.myRef.current) {
             this.myRef.current.muted = this.state.muted;
         }
-        // if(this.props.shows[1] === undefined){
+        // if(this.props.shows[Object.keys(this.props.shows)[0]] === undefined){
         //     return <div></div>
         // }
         const muteButton = <img onClick={() => this.changeMuted()}
@@ -45,22 +44,22 @@ class Browse extends React.Component {
         const file = "/Users/hasnainshamim/Downloads/cat_in_the_sun.mp4"
         return <div className="content-main">
             <div className="video-container">
-                <video ref={this.myRef} width="100%" autoPlay muted controls src={this.props.shows[1] ? this.props.shows[1].video_url : null} type="video/mp4" > 
+                <video ref={this.myRef} width="100%" autoPlay muted controls src={this.props.shows[Object.keys(this.props.shows)[0]] ? this.props.shows[Object.keys(this.props.shows)[0]].video_url : null} type="video/mp4" > 
                     Your Browser Does Not Support This Video
                 </video>
                 <div className="video-buttons">
                     <div className="controls-left">
-                        <h1>{this.props.shows[1] ? this.props.shows[1].title : null}</h1>
+                        <h1>{this.props.shows[Object.keys(this.props.shows)[0]] ? this.props.shows[Object.keys(this.props.shows)[0]].title : null}</h1>
                         <span>
-                            <Link className="link-button" to={`/watch/${this.props.shows[1] ? this.props.shows[1].id : null}`}><button>Play</button></Link>
+                            <Link className="link-button" to={`/watch/${this.props.shows[Object.keys(this.props.shows)[0]] ? this.props.shows[Object.keys(this.props.shows)[0]].id : null}`}><button>Play</button></Link>
                             <a className="link-button"><button><i className="fas fa-plus fa-lg"></i> My List</button></a>
                         </span>
                         <h2>Watch Now</h2>
-                        <p>{this.props.shows[1] ? this.props.shows[1].description : null}</p>
+                        <p>{this.props.shows[Object.keys(this.props.shows)[0]] ? this.props.shows[Object.keys(this.props.shows)[0]].description : null}</p>
                     </div>
                     <div className="controls-right">
                         {muteButton}
-                        <span>{this.props.shows[1] ? this.props.shows[1].maturity_rating : null}</span>
+                        <span>{this.props.shows[Object.keys(this.props.shows)[0]] ? this.props.shows[Object.keys(this.props.shows)[0]].maturity_rating : null}</span>
                     </div>
                 </div>
             </div>

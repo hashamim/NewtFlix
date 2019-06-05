@@ -15,11 +15,14 @@ json.genres do
         end
     end
 end
-
 json.shows do
-    show_arr.each do |show|
+    show_arr.each.with_index do |show, ind|
         json.set! show.id do
         json.extract! show, :id, :title, :maturity_rating
+        if ind == 0
+            json.extract! show, :description
+            json.video_url = url_for(show.video)
+        end
         json.title_card_url url_for(show.title_card)
         json.genre_ids show.genres.pluck(:id)
         end

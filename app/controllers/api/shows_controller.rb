@@ -5,7 +5,7 @@ class Api::ShowsController < ApplicationController
     end
 
     def show
-        @show = Show.find_by(id: params[:id])
+        @show = Show.includes(:genres).find_by(id: params[:id])
         render :show
     end
 end

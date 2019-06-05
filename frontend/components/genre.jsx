@@ -11,9 +11,14 @@ class Genre extends React.Component{
     render(){
         
         return (
-            <div className={`genre-container ${this.props.currentGenre ? "active" : ""}`} onClick={this.props.setThisGenre}>
-                {this.props.showsContained.map((show, ind) => <Show key={ind} {...show}/>)}
-            </div>
+            <>
+                <div className={`genre-container ${this.props.currentGenre ? "active" : ""}`} onClick={this.props.setThisGenre}>
+                    {this.props.showsContained.map((show, ind) => <Show key={ind} {...show}/>)}
+                </div>
+                <div className="collapsable">
+
+                </div>
+            </>
         )
     }
 }
