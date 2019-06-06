@@ -1,0 +1,20 @@
+.genre-page-container {
+    background-color: #141414;
+    height: 100%;
+    width: 100%;
+    color: white;
+    font-size: 11px;
+}
+.genre-page-header {
+    color: white;
+    position: fixed;
+    top: 68px;
+    padding-left: 4%;
+    font-size: 2vw;
+}
+
+.genre-shows-list {
+    padding-top: 160px;
+    
+}
+

@@ -3,7 +3,8 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getShows, getShow } from '../actions/show_actions';
 import { genresSelector } from '../reducers/selectors';
-import Genre from './genre';
+import GenreRow from './genre_row';
+import BrowsePlayer from './browse_player';
 
 class Browse extends React.Component {
     constructor(props){
@@ -12,7 +13,6 @@ class Browse extends React.Component {
             currentGenre: null,
             muted: true,
         }
-        this.myRef = React.createRef();
     }
     componentDidMount(){
         this.props.fetchShows();
@@ -21,47 +21,12 @@ class Browse extends React.Component {
         this.setState({currentGenre: ind});
 
     }
-    changeMuted() {
-        if (this.state.muted) {
-            this.setState({ muted: false });
-        } else {
-            this.setState({ muted: true });
 
-        }
-    }
     render(){
-        if (this.myRef.current) {
-            this.myRef.current.muted = this.state.muted;
-        }
-        // if(this.props.shows[Object.keys(this.props.shows)[0]] === undefined){
-        //     return <div></div>
-        // }
-        const muteButton = <img onClick={() => this.changeMuted()}
-            src={this.myRef.current && !this.state.muted ? window.mute_image : window.volume_image} />;
         const genreRows = this.props.genres.map((genre, ind) => 
-            <Genre key={ind} name={genre.name} currentGenre={this.state.currentGenre === ind ? true : false} setThisGenre={() => this.setCurrentGenre(ind)} showsContained={genre.show_ids.map((showId)=> this.props.shows[showId])}/>)
-        const file = "/Users/hasnainshamim/Downloads/cat_in_the_sun.mp4"
+            <GenreRow key={ind} name={genre.name} id={genre.id} currentGenre={this.state.currentGenre === ind ? true : false} unsetThisGenre={() => this.setCurrentGenre(null)}setThisGenre={() => this.setCurrentGenre(ind)} showsContained={genre.show_ids.map((showId)=> this.props.shows[showId])}/>)
         return <div className="content-main">
-            <div className="video-container">
-                <video ref={this.myRef} width="100%" autoPlay muted controls src={this.props.shows[Object.keys(this.props.shows)[0]] ? this.props.shows[Object.keys(this.props.shows)[0]].video_url : null} type="video/mp4" > 
-                    Your Browser Does Not Support This Video
-                </video>
-                <div className="video-buttons">
-                    <div className="controls-left">
-                        <h1>{this.props.shows[Object.keys(this.props.shows)[0]] ? this.props.shows[Object.keys(this.props.shows)[0]].title : null}</h1>
-                        <span>
-                            <Link className="link-button" to={`/watch/${this.props.shows[Object.keys(this.props.shows)[0]] ? this.props.shows[Object.keys(this.props.shows)[0]].id : null}`}><button>Play</button></Link>
-                            <a className="link-button"><button><i className="fas fa-plus fa-lg"></i> My List</button></a>
-                        </span>
-                        <h2>Watch Now</h2>
-                        <p>{this.props.shows[Object.keys(this.props.shows)[0]] ? this.props.shows[Object.keys(this.props.shows)[0]].description : null}</p>
-                    </div>
-                    <div className="controls-right">
-                        {muteButton}
-                        <span>{this.props.shows[Object.keys(this.props.shows)[0]] ? this.props.shows[Object.keys(this.props.shows)[0]].maturity_rating : null}</span>
-                    </div>
-                </div>
-            </div>
+            {Object.keys(this.props.shows)[0] ? <BrowsePlayer showId={Object.keys(this.props.shows)[0]} /> : null}
             {genreRows}
         </div>
     }

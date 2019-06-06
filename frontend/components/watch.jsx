@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { getShow } from '../actions/show_actions';
 
 
@@ -15,6 +15,9 @@ class Watch extends React.Component{
     componentDidMount(){
         this.props.fetchShow(this.props.match.params.show_id);
     }
+    componentWillUnmount(){
+        clearInterval(this.intervalId);
+    }
     autoPlayVideo(){
         if(this.myRef.current.paused){
         console.log(this.myRef.current.muted = false);
@@ -26,10 +29,9 @@ class Watch extends React.Component{
         }
         this.tick = true;
         this.setState({ controlsActive: true });
-        this.intervalId = setInterval(() => this.unSetActive(), 1000);
+        this.intervalId = setInterval(() => this.unSetActive(), 500);
     }
     unSetActive(){
-        debugger
         if(this.tick === false){
         this.setState({controlsActive: false});
         clearInterval(this.intervalId);
@@ -54,7 +56,7 @@ class Watch extends React.Component{
                     Your Browser Does Not Support This Video
                 </video>
                 <div className="video-controls" onPointerMove={() => this.setActive()}>
-                    {this.state.controlsActive ? <><i className="fas fa-arrow-left fa-2x"></i> <span>Back to Browse</span></> : null}
+                    {this.state.controlsActive ? <Link to="/browse"><i className="fas fa-arrow-left fa-2x"></i> <span>Back to Browse</span></Link> : null}
                 </div>
             </div>
         )

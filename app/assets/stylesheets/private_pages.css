@@ -68,7 +68,9 @@
   background: red;
   margin: 10px;
 }
-
+.content-main {
+    background-color: #141414;
+}
 .content-main .video-container {
     width: 100%;
     position: relative;
@@ -145,6 +147,7 @@
 
 .video-container .controls-right img:hover {
     height: 110%;
+    cursor: pointer;
 }
 
 .video-container .controls-right span {
@@ -156,15 +159,27 @@
 
 /* GENRE STUFF */
 .genre-title {
-    /* color: rgb(229,229,229); */
+    color: rgb(229,229,229);
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 12px;
     padding-left: 5%;
+    display: inline-block;
+    text-decoration: none;
 }
-
+.genre-title > i {
+    display: none;
+}
 .genre-title:hover {
     color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.genre-title:hover > i {
+    display: initial;
+    margin-left: 5px;
 }
 .row-container {
     width: 100%;
@@ -178,7 +193,6 @@
 }
 
 .row-container.active {
-    background-color: red;
     padding: 0 1%;
 }
 
@@ -187,8 +201,8 @@
     height: 100%;
     background-color: black;
     transition: 250ms;
-    max-width: 18%;
-    margin: 1%;
+    max-width: 19.6%;
+    margin: 0.2%;
 }
 
 .show-container .title-card {
@@ -234,6 +248,7 @@
     height: 32px;
     width: 32px;
     transition: 200ms;
+    cursor: pointer;
 }
 
 .show-info {
@@ -263,6 +278,7 @@
     height: 27px;
     width: 27px;
     transition: 200ms;
+    cursor: pointer;
 }
 
 .show-video-player {
@@ -274,20 +290,26 @@
 
 .watch-video-container {
     position: relative;
+    display: flex;
+    height: 100vh;
+    background: black;
 }
 
 .watch-video-container .video-controls {
     position: absolute;
     top: 0;
     left: 0;
-    color: white;
     font-size: 20px;
     padding: 25px;
-    display: flex;
-    align-items: flex-start;
     height: 30%;
     width: 30%;
     
+}
+.watch-video-container .video-controls a{
+    text-decoration: none;
+    display: flex;
+    align-items: flex-start;
+    color: white;
 }
 
 .watch-video-container .video-controls span {

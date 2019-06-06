@@ -4,6 +4,7 @@ import { getShows } from '../actions/show_actions';
 import { NavLink, Link, Switch, Route, withRouter } from 'react-router-dom';
 import Browse from './browse';
 import { logout } from '../actions/session_actions';
+import GenrePage from './genre_page';
 //Component
 class Main extends React.Component{
     constructor(props){
@@ -11,7 +12,6 @@ class Main extends React.Component{
         this.state = {
             atTop: true,
         }
-
     }
     componentDidMount(){
         window.onscroll = () => {
@@ -27,13 +27,13 @@ class Main extends React.Component{
     }
     render(){
         return (
-            <div>
+            <>
                 <div className={"priv-header" + (this.state.atTop ? " at-top" : "")}>
                     <div className="priv-header-left">
                         <Link to="/browse" className="priv-logo-container"><img className="priv-nflogo" src={window.netflixLogo}></img></Link>
                         <div className="priv-nav-bar">
                             <NavLink to="/browse" activeClassName="active">Home</NavLink>
-                            <NavLink to="/browse/genres" activeClassName="active">Genres</NavLink>
+                            <NavLink to={`/browse/genres/${window.tv_genre}`} activeClassName="active">All Shows</NavLink>
                             <NavLink to="/browse/my-list" activeClassName="active">My List</NavLink>
                         </div>
                     </div>
@@ -45,9 +45,10 @@ class Main extends React.Component{
                     </div>
                 </div>
                 <Switch>
+                    <Route path="/browse/genres/:genreId" exact component={GenrePage} />
                     <Route component={Browse} />
                 </Switch>
-            </div>
+            </>
         )
     }
 }

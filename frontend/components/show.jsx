@@ -15,14 +15,15 @@ class Show extends React.Component{
         this.changeToUnHovered = this.changeToUnHovered.bind(this);
     }
     componentDidMount(){
-        this.props.fetchGenres();
     }
     changeToHovered(){
+        this.props.fetchGenres();
         this.setState({ hovered: true })
-        this.props.setParentGenre();
+        this.props.setParentRow();
     }
     changeToUnHovered(){
         this.setState({ hovered: false })
+        this.props.unsetParentRow();
     }
     changeMuted(e){
         if(this.state.muted){
@@ -39,12 +40,13 @@ class Show extends React.Component{
     }
     render(){
         const muteButton = <img onClick={()=>this.changeMuted()}
-            src={this.myRef.current && !this.state.muted ? window.mute_image : window.volume_image} />;
+            src={this.myRef.current && !this.state.muted ? window.volume_image : window.mute_image} />;
         let player = null;
         if(this.myRef.current){
             this.myRef.current.muted = this.state.muted;
         }
-        const genresRender = this.props.genre_ids.map((genre_id,ind) => <li key={ind}>{this.props.genres[genre_id].name}</li>)
+
+        const genresRender = !this.props.genre_ids ? null : this.props.genre_ids.map((genre_id,ind) => <li key={ind}>{this.props.genres[genre_id].name}</li>)
         const hoveredElements = <>
             <video className="show-video-player" 
                 width="100%" 
@@ -68,9 +70,6 @@ class Show extends React.Component{
                     </div>
                     <div className="show-actions">
                         {muteButton}
-                        <img src={window.mute_image} />
-                        <img src={window.volume_image} />
-                        <img src={window.add_image} />
                         <img src={window.add_image} />
                     </div>
                 </div>

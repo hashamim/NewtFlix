@@ -29,6 +29,7 @@
       window.add_image = "<%= image_url 'add.png' %>"
       window.mute_image = "<%= image_url 'mute.svg' %>"
       window.volume_image = "<%= image_url 'volume.svg' %>"
+      window.tv_genre = "<%=  Genre.find_by(name: "TV Shows")[:id]%>"
     </script>
     
   </head>
