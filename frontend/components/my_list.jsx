@@ -13,6 +13,7 @@ class MyList extends React.Component {
     }
 
     render() {
+        debugger
         const shows = this.props.list ? this.props.list.map((showId) => this.props.shows[showId]) : [];
 
         return <div className="genre-page-container">
@@ -26,8 +27,9 @@ class MyList extends React.Component {
 }
 
 const msp = (state, ownProps) => {
+    debugger
     return {
-        list: state.entities.user.showIds.splice(),
+        list: state.entities.user.showIds.slice(),
         shows: state.entities.shows,
     }
 }
@@ -36,4 +38,4 @@ const mdp = (dispatch, ownProps) => ({
     fetchShows: () => dispatch(getShows()),
 })
 
-export default withRouter(connect(msp, mdp)(GenrePage));
+export default withRouter(connect(msp, mdp)(MyList));

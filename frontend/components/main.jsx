@@ -5,6 +5,7 @@ import { NavLink, Link, Switch, Route, withRouter } from 'react-router-dom';
 import Browse from './browse';
 import { logout } from '../actions/session_actions';
 import GenrePage from './genre_page';
+import MyList from './my_list';
 //Component
 class Main extends React.Component{
     constructor(props){
@@ -46,6 +47,7 @@ class Main extends React.Component{
                 </div>
                 <Switch>
                     <Route path="/browse/genres/:genreId" exact component={GenrePage} />
+                    <Route path="/browse/my-list" component={MyList} />
                     <Route component={Browse} />
                 </Switch>
             </>

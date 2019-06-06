@@ -108,7 +108,7 @@ const msp = (state,ownProps) => ({
 
 const mdp = (dispatch, ownProps) => ({
     fetchGenres: () => dispatch(getShow(ownProps.id)),
-    addToList: () => dispatch(createListItem(ownProps.showid)),
+    addToList: () => dispatch(createListItem(ownProps.id)),
     removeFromList: () => dispatch(destroyListItem(ownProps.id)),
 })
 
