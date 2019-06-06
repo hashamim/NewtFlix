@@ -12,7 +12,7 @@ Show.destroy_all
 User.destroy_all
 Genre.destroy_all
 
-User.create(profile: "Demo", email: "email@example.com", password: "password")
+demo = User.create(profile: "Demo", email: "email@example.com", password: "password")
 
 videos = {}
 videos[:stranger_things] = open("https://newtflix-dev.s3.amazonaws.com/Y481W8bavTg5uasHf6TzBRmD")
@@ -59,6 +59,8 @@ genres[1].shows << office
 
 genres[1].shows << house_cards
 
+demo.shows << genres[0].shows
+demo.shows << genres[1].shows
 
 stranger_things.video.attach(io: videos[:stranger_things], filename: "stranger_things.mp4")
 stranger_things.title_card.attach(io: title_cards[:stranger_things], filename: "stranger_things.jpg")

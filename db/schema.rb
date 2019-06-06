@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_011008) do
+ActiveRecord::Schema.define(version: 2019_06_06_144028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2019_06_03_011008) do
     t.index ["name"], name: "index_genres_on_name", unique: true
   end
 
+  create_table "lists", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "show_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["show_id"], name: "index_lists_on_show_id"
+    t.index ["user_id"], name: "index_lists_on_user_id"
+  end
+
   create_table "show_genres", force: :cascade do |t|
     t.bigint "show_id"
     t.bigint "genre_id"
@@ -90,6 +99,8 @@ ActiveRecord::Schema.define(version: 2019_06_03_011008) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "castings", "actors"
   add_foreign_key "castings", "shows"
+  add_foreign_key "lists", "shows"
+  add_foreign_key "lists", "users"
   add_foreign_key "show_genres", "genres"
   add_foreign_key "show_genres", "shows"
 end

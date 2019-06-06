@@ -2,14 +2,17 @@ import React from 'react';
 import { getShow } from '../actions/show_actions';
 import { connect } from 'react-redux';
 import { Link, Redirect, withRouter } from 'react-router-dom';
+import { createListItem, destroyListItem } from '../actions/list_actions';
 class Show extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             hovered: false,
             muted: true,
-            redirectToPlayer: false,
+            isAdded: this.props.isAdded,
+
         }
+        this.updateList = this.updateList.bind(this);
         this.myRef = React.createRef();
         this.changeToHovered = this.changeToHovered.bind(this);
         this.changeToUnHovered = this.changeToUnHovered.bind(this);
@@ -35,6 +38,14 @@ class Show extends React.Component{
             this.setState({ muted: true });
 
         }
+    }
+    updateList(){
+        if(this.state.isAdded){
+            this.props.removeFromList()
+        } else {
+            this.props.addToList()
+        }
+        this.setState({isAdded: !this.state.isAdded})
     }
     divClick(e){
         if(e.target.className === "show-quick-interface" || e.target.className === "show-interface"){
@@ -73,7 +84,7 @@ class Show extends React.Component{
                     </div>
                     <div className="show-actions">
                         {muteButton}
-                        <img src={window.add_image} />
+                        <img onClick={this.updateList} src={ this.state.isAdded ? window.check_image : window.add_image} />
                     </div>
                 </div>
                 <div className="show-dropdown">
@@ -90,12 +101,15 @@ class Show extends React.Component{
     }
 }
 
-const msp = (state) => ({
+const msp = (state,ownProps) => ({
     genres: state.entities.genres,
+    isAdded: state.entities.user.showIds.includes(parseInt(ownProps.id)),
 });
 
 const mdp = (dispatch, ownProps) => ({
-    fetchGenres: () => dispatch(getShow(ownProps.id))
+    fetchGenres: () => dispatch(getShow(ownProps.id)),
+    addToList: () => dispatch(createListItem(ownProps.showid)),
+    removeFromList: () => dispatch(destroyListItem(ownProps.id)),
 })
 
 export default withRouter(connect(msp,mdp)(Show));

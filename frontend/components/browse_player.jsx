@@ -2,18 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getShow } from '../actions/show_actions';
+import { createListItem, destroyListItem } from '../actions/list_actions';
+
 
 class BrowsePlayer extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             muted: true,
+            isAdded: this.props.isAdded,
         }
+        this.updateList = this.updateList.bind(this);
         this.myRef = React.createRef();
     }
     componentDidMount(){
-        debugger
-            this.props.fetchShow();
+        this.props.fetchShow();
     }
     changeMuted() {
         if (this.state.muted) {
@@ -23,23 +26,39 @@ class BrowsePlayer extends React.Component{
 
         }
     }
-    render(){
+    updateList(){
         debugger
+        if (this.state.isAdded){
+            this.props.removeFromList();
+        } else {
+            this.props.addToList();
+        }
+        this.setState({
+            isAdded: !this.state.isAdded,
+        })
+    }
+    render(){
+        console.log(this.props.isAdded);
         if (this.myRef.current) {
             this.myRef.current.muted = this.state.muted;
         }
         const muteButton = <img onClick={() => this.changeMuted()}
             src={this.myRef.current && !this.state.muted ? window.volume_image : window.mute_image} />;
         return <div className="video-container">
-            <video ref={this.myRef} width="100%" autoPlay muted controls src={this.props.show ? this.props.show.video_url : null} type="video/mp4" >
+            <video ref={this.myRef} width="100%" autoPlay muted src={this.props.show ? this.props.show.video_url : null} type="video/mp4" >
                 Your Browser Does Not Support This Video
                 </video>
             <div className="video-buttons">
                 <div className="controls-left">
                     <h1>{this.props.show ? this.props.show.title : null}</h1>
                     <span>
-                        <Link className="link-button" to={`/watch/${this.props.show ? this.props.show.id : null}`}><button>Play</button></Link>
-                        <a className="link-button"><button><i className="fas fa-plus fa-lg"></i> My List</button></a>
+                        <Link className="link-button" to={`/watch/${this.props.show ? this.props.show.id : null}`}><button><i className="fas fa-play"></i>Play</button></Link>
+                        <a className="link-button">
+                            <button onClick={this.updateList}>
+                                <i className={(this.state.isAdded ? "fas fa-check" : "fas fa-plus") + " fa-lg"}></i> 
+                                My List
+                            </button>
+                        </a>
                     </span>
                     <h2>Watch Now</h2>
                     <p>{this.props.show ? this.props.show.description : null}</p>
@@ -53,14 +72,18 @@ class BrowsePlayer extends React.Component{
     }
 }
 
-const msp = (state,ownProps) => ({
+const msp = (state,ownProps) => {
+    return{
     show: state.entities.shows[ownProps.showId],
-})
+    isAdded: state.entities.user.showIds.includes(parseInt(ownProps.showId)),
+}}
 
 const mdp = (dispatch,ownProps) => {
-    debugger
     return {
-    fetchShow: ()=> dispatch(getShow(ownProps.showId)),
-}}
+        fetchShow: ()=> dispatch(getShow(ownProps.showId)),
+        addToList: () => dispatch(createListItem(ownProps.showId)),
+        removeFromList: () => dispatch(destroyListItem(ownProps.showId)),
+    }
+}
 
 export default connect(msp,mdp)(BrowsePlayer);

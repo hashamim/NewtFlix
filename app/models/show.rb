@@ -19,7 +19,6 @@ class Show < ApplicationRecord
     has_many :genres, through: :show_genres
     has_many :castings
     has_many :actors, through: :castings 
-
     has_one_attached :title_card
     has_one_attached :video
 end

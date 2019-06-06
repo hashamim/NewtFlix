@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 import * as SessionApiUtils from './utils/session_api_utils';
-import { getShows, getShow } from './actions/show_actions';
+import { createListItem, destroyListItem  } from './actions/list_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById('root');
@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ReactDOM.render(<Root store={store}/>, root);
 
     //TEST
+    window.createListItem = createListItem;
+    window.destroyListItem = destroyListItem;
     window.destroySession = SessionApiUtils.destroySession;
     window.store = store;
-    window.getShows = getShows;
-    window.getShow = getShow;
 
     //TEST-END
 })

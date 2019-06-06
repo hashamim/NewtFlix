@@ -25,13 +25,13 @@ import { Link } from 'react-router-dom';
 //         )
 //     }
 // }
-export default (props) => {
+const GenreRow = (props) => {
     return (
         <>
-            <Link to={`/browse/genres/${props.id}`} className="genre-title">{props.name}<i class="fas fa-chevron-right"></i></Link> {/* Make Clickable */}
+            <Link to={`/browse/genres/${props.id}`} className="genre-title">{props.name}<i className="fas fa-chevron-right"></i></Link> {/* Make Clickable */}
             <ShowRow showsContained={props.showsContained} currentRow={props.currentGenre} setThisRow={props.setThisGenre} unsetThisRow={props.unsetThisGenre}/>
         </>
     )
 }
-// export default Genre;
+export default GenreRow;
 

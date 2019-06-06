@@ -134,6 +134,10 @@
     color: black;
 }
 
+.video-container .controls-left .link-button button:focus {
+    outline: 0;
+}
+
 .video-container .controls-right {
     font-size: 14px;
     height: 30px;

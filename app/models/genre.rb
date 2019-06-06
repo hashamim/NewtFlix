@@ -12,6 +12,5 @@ class Genre < ApplicationRecord
     validates :name, presence: true, uniqueness: true
 
     has_many :show_genres
-    has_many :shows,
-        through: :show_genres
+    has_many :shows, through: :show_genres
 end

@@ -14,6 +14,7 @@
           id: <%= current_user.id %>,
           profile: "<%= current_user.profile %>",
           email: "<%= current_user.email %>",
+          showIds: <%= current_user.shows.pluck(:id) %>
         };
       </script>
     <% end %>
@@ -26,7 +27,8 @@
         blue: "<%= image_url 'blue_profile.png' %>",
       };
       window.play_image = "<%= image_url 'play_button.svg' %>"
-      window.add_image = "<%= image_url 'add.png' %>"
+      window.add_image = "<%= image_url 'add.svg' %>"
+      window.check_image = "<%= image_url 'check.svg' %>"
       window.mute_image = "<%= image_url 'mute.svg' %>"
       window.volume_image = "<%= image_url 'volume.svg' %>"
       window.tv_genre = "<%=  Genre.find_by(name: "TV Shows")[:id]%>"
