@@ -46,7 +46,7 @@ friends = "FILL IN LATER"
 arrested = "FILL IN LATER"
 
 genres = Genre.create([{name: "Action"}, {name: "Comedy"},{name: "Horror"},{name: "Disney"},{name: "Thriller"},{name: "Animation"}])
-
+genres.push(Genre.create(name: "TV Shows"))
 genres[0].shows << stranger_things
 genres[0].shows << avengers
 genres[0].shows << thor
