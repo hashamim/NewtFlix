@@ -20,14 +20,13 @@ export default (state = defaultState, action) => {
             showIds.push(action.showId);
             newState = merge({}, state);
             newState.showIds = showIds;
-            debugger
             return newState;
         case REMOVE_LIST_ITEM:
             showIds = state.showIds.slice();
             newState = merge({}, state);
-            remove(showIds, (ele) => ele === action.showId);
-            newState.showIds = showIds;
+            remove(showIds, (ele) => (parseInt(ele) === parseInt(action.showId)));
             debugger
+            newState.showIds = showIds;
             return newState;
         default:
             return state;

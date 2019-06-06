@@ -9,7 +9,6 @@ class Show extends React.Component{
         this.state = {
             hovered: false,
             muted: true,
-            isAdded: this.props.isAdded,
 
         }
         this.updateList = this.updateList.bind(this);
@@ -22,12 +21,9 @@ class Show extends React.Component{
     changeToHovered(){
         this.props.fetchGenres();
         this.setState({ hovered: true })
-        debugger
         this.props.setParentRow();
-        debugger
     }
     changeToUnHovered(){
-        debugger
         this.setState({ hovered: false })
         this.props.unsetParentRow();
     }
@@ -40,12 +36,11 @@ class Show extends React.Component{
         }
     }
     updateList(){
-        if(this.state.isAdded){
+        if(this.props.isAdded){
             this.props.removeFromList()
         } else {
             this.props.addToList()
         }
-        this.setState({isAdded: !this.state.isAdded})
     }
     divClick(e){
         if(e.target.className === "show-quick-interface" || e.target.className === "show-interface"){
@@ -84,7 +79,7 @@ class Show extends React.Component{
                     </div>
                     <div className="show-actions">
                         {muteButton}
-                        <img onClick={this.updateList} src={ this.state.isAdded ? window.check_image : window.add_image} />
+                        <img onClick={this.updateList} src={ this.props.isAdded ? window.check_image : window.add_image} />
                     </div>
                 </div>
                 <div className="show-dropdown">
@@ -101,15 +96,17 @@ class Show extends React.Component{
     }
 }
 
-const msp = (state,ownProps) => ({
+const msp = (state,ownProps) => {
+    return {
     genres: state.entities.genres,
     isAdded: state.entities.user.showIds.includes(parseInt(ownProps.id)),
-});
+}};
 
-const mdp = (dispatch, ownProps) => ({
+const mdp = (dispatch, ownProps) => {
+    return {
     fetchGenres: () => dispatch(getShow(ownProps.id)),
     addToList: () => dispatch(createListItem(ownProps.id)),
     removeFromList: () => dispatch(destroyListItem(ownProps.id)),
-})
+}}
 
 export default withRouter(connect(msp,mdp)(Show));

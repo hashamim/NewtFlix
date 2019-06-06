@@ -9,7 +9,6 @@ class ShowRow extends React.Component{
         }
     }
     render() {
-        debugger
         return (
             <>
                 <div className={`row-container ${this.props.currentRow ? "active" : ""}`} >

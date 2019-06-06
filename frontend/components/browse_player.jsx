@@ -10,7 +10,6 @@ class BrowsePlayer extends React.Component{
         super(props);
         this.state = {
             muted: true,
-            isAdded: this.props.isAdded,
         }
         this.updateList = this.updateList.bind(this);
         this.myRef = React.createRef();
@@ -27,15 +26,11 @@ class BrowsePlayer extends React.Component{
         }
     }
     updateList(){
-        debugger
-        if (this.state.isAdded){
+        if (this.props.isAdded){
             this.props.removeFromList();
         } else {
             this.props.addToList();
         }
-        this.setState({
-            isAdded: !this.state.isAdded,
-        })
     }
     render(){
         console.log(this.props.isAdded);
@@ -55,7 +50,7 @@ class BrowsePlayer extends React.Component{
                         <Link className="link-button" to={`/watch/${this.props.show ? this.props.show.id : null}`}><button><i className="fas fa-play"></i>Play</button></Link>
                         <a className="link-button">
                             <button onClick={this.updateList}>
-                                <i className={(this.state.isAdded ? "fas fa-check" : "fas fa-plus") + " fa-lg"}></i> 
+                                <i className={(this.props.isAdded ? "fas fa-check" : "fas fa-plus") + " fa-lg"}></i> 
                                 My List
                             </button>
                         </a>
