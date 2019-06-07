@@ -6,7 +6,6 @@ class SearchPage extends React.Component{
         super(props);
     }
     render(){
-        debugger
         const showList = this.props.shows ? Object.values(this.props.shows) : []
 
         return <div className="genre-page-container">

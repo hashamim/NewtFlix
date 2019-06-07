@@ -36,7 +36,6 @@ class Main extends React.Component{
         window.onscroll = null;
     }
     render(){
-        debugger
         return (
             <>
                 <div className={"priv-header" + (this.state.atTop ? " at-top" : "")}>

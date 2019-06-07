@@ -25,7 +25,6 @@ export default (state = defaultState, action) => {
             showIds = state.showIds.slice();
             newState = merge({}, state);
             remove(showIds, (ele) => (parseInt(ele) === parseInt(action.showId)));
-            debugger
             newState.showIds = showIds;
             return newState;
         default:
