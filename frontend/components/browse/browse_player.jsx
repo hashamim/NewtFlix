@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getShow } from '../actions/show_actions';
-import { createListItem, destroyListItem } from '../actions/list_actions';
+import { getShow } from '../../actions/show_actions';
+import { createListItem, destroyListItem } from '../../actions/list_actions';
 
 
 class BrowsePlayer extends React.Component{

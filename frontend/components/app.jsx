@@ -1,11 +1,9 @@
 import React from 'react';
-import LoginForm from './login_form_container';
 import { Switch, Route } from 'react-router-dom';
-import SignupForm from './signup_form_container';
 import {AuthRoute, PrivateRoute } from '../utils/route_utils';
-import Splash from './splash';
+import Splash from './authentication/splash';
 import Main from './main';
-import Watch from './watch';
+import Watch from './watch/watch';
 
 
 const Dummy = () => (

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { login, resetErrors } from '../actions/session_actions';
+import { login, resetErrors } from '../../actions/session_actions';
 import SessionForm from './session_form';
 
 const LOGIN_TEXT = "Log In";

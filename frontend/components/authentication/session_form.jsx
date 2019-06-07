@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { resetErrors } from '../actions/session_actions';
+import { resetErrors } from '../../actions/session_actions';
 const SIGNUP_TEXT = "Sign Up"; ////MAKE SURE THIS MATCHES IN signup_form_component.js
 class SessionForm extends React.Component{
     //props needed:

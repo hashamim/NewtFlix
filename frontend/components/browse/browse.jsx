@@ -1,8 +1,8 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getShows, getShow } from '../actions/show_actions';
-import { genresSelector } from '../reducers/selectors';
+import { getShows, getShow } from '../../actions/show_actions';
+import { genresSelector } from '../../reducers/selectors';
 import GenreRow from './genre_row';
 import BrowsePlayer from './browse_player';
 

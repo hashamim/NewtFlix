@@ -1,8 +1,8 @@
 import React from 'react';
-import { getShow } from '../actions/show_actions';
+import { getShow } from '../../actions/show_actions';
 import { connect } from 'react-redux';
 import { Link, Redirect, withRouter } from 'react-router-dom';
-import { createListItem, destroyListItem } from '../actions/list_actions';
+import { createListItem, destroyListItem } from '../../actions/list_actions';
 class Show extends React.Component{
     constructor(props){
         super(props);

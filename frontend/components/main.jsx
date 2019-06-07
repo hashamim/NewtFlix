@@ -2,12 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getShows } from '../actions/show_actions';
 import { NavLink, Link, Switch, Route, withRouter } from 'react-router-dom';
-import Browse from './browse';
+import Browse from './browse/browse';
 import { logout } from '../actions/session_actions';
-import GenrePage from './genre_page';
-import MyList from './my_list';
+import GenrePage from './genres/genre_page';
+import MyList from './my_list/my_list';
 import { queryShows } from '../actions/show_actions';
-import SearchPage from './search_page';
+import SearchPage from './search/search_page';
+
+
 //Component
 class Main extends React.Component{
     constructor(props){
@@ -27,13 +29,13 @@ class Main extends React.Component{
             }
         };
     }
+    componentWillUnmount() {
+        window.onscroll = null;
+    }
     handleSearch(e){
         this.setState({searchVal: e.target.value});
         this.props.search(e.target.value);
         console.log(e.target.value);
-    }
-    componentWillUnmount(){
-        window.onscroll = null;
     }
     render(){
         return (

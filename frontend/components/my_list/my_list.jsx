@@ -1,8 +1,8 @@
 import React from 'react';
-import { getShows } from '../actions/show_actions';
+import { getShows } from '../../actions/show_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import ShowsGroup from './shows_group';
+import ShowsGroup from '../show_containers/shows_group';
 
 class MyList extends React.Component {
     constructor(props) {

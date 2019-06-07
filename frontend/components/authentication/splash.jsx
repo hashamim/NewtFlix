@@ -1,10 +1,10 @@
 import React from 'react';
-import { AuthRoute } from '../utils/route_utils';
+import { AuthRoute } from '../../utils/route_utils';
 import LoginForm from './login_form_container';
 import SignupForm from './signup_form_container';
 import { Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { login } from '../actions/session_actions';
+import { login } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 const Splash = (props) => {
     const bgStyle = {

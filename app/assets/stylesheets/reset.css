@@ -41,6 +41,10 @@ html {
 	box-sizing: inherit;
 }
 
+button:focus {
+	outline: 0;
+}
+
 /* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */
 
 /* Responsive images and other embedded objects

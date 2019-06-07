@@ -1,15 +1,12 @@
 import React from 'react';
-import { getShows } from '../actions/show_actions';
+import { getShows } from '../../actions/show_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import ShowsGroup from './shows_group';
+import ShowsGroup from '../show_containers/shows_group';
 
 class GenrePage extends React.Component {
     constructor(props){
         super(props);
-        // this.state = {
-        //     currentRow: null,
-        // }
     }
     componentDidMount(){
         this.props.fetchShows();

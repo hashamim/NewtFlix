@@ -1,5 +1,5 @@
 import React from 'react';
-import ShowsGroup from './shows_group';
+import ShowsGroup from '../show_containers/shows_group';
 
 class SearchPage extends React.Component{
     constructor(props){ //this.props.query_string
