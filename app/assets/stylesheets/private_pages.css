@@ -19,6 +19,9 @@
     display: flex;
 }
 
+
+
+
 .priv-nflogo {
     height: 50%;
 }
@@ -56,13 +59,40 @@
     cursor: default;
 }
 
-.priv-header-resources .profile-dropdown {
-    size: 40px 40px;
+.priv-header-resources {
+    display: flex;
+    color: white;
+    min-width: 8%;
+    justify-content: space-between;
+    margin-right: 3%;
+    align-items: center;
+    font-size: 16px;
 }
-.priv-header-resources .profile-dropdown {
-    max-width: 100%;
-    max-height: 100%;
+
+.priv-header-resources .header-search-bar i {
+    margin-right: 5px;
 }
+.priv-header-resources .header-search-bar {
+    margin-right: 10px;
+}
+
+.priv-header-resources input {
+    /* display: none; */
+    border: solid white 1px;
+    background-color: rgba(0,0,0, 0.8);
+    color: white;
+
+}
+
+.priv-header-resources input:focus {
+    outline: none;
+}
+
+.priv-header-resources .profile-dropdown img{
+    width: 40px;
+    height: 40px;
+}
+
 .item {
   height: 100px;
   background: red;

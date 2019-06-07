@@ -4,6 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 import * as SessionApiUtils from './utils/session_api_utils';
 import { createListItem, destroyListItem  } from './actions/list_actions';
+import { queryShows } from './actions/show_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById('root');
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ReactDOM.render(<Root store={store}/>, root);
 
     //TEST
+    window.queryShows = queryShows;
     window.createListItem = createListItem;
     window.destroyListItem = destroyListItem;
     window.destroySession = SessionApiUtils.destroySession;

@@ -2,6 +2,7 @@ import * as ShowApiUtils from '../utils/show_api_utils';
 
 export const RECEIVE_SHOWS = "RECEIVE_SHOWS";
 export const RECEIVE_SHOW = "RECEIVE_SHOW"; 
+export const RECEIVE_SEARCHED_SHOWS = "RECEIVE_SEARCHED_SHOWS";
 
 export const receiveShows = ({shows, genres, actors}) => ({
     type: RECEIVE_SHOWS,
@@ -16,7 +17,16 @@ export const receiveShow = ({shows, genres, actors}) => ({
     actors,
 })
 
+export const receiveSearchedShows = ({shows}) => ({
+    type: RECEIVE_SEARCHED_SHOWS,
+    shows,
+})
+
 // Thunk
+
+export const queryShows = (queryString) => dispatch => (
+    ShowApiUtils.searchShows(queryString).then((response) => dispatch(receiveSearchedShows(response)))
+)
 
 export const getShows = () => dispatch => (
     ShowApiUtils.indexShows().then((response) => dispatch(receiveShows(response)))
