@@ -71,17 +71,44 @@
 
 .priv-header-resources .header-search-bar i {
     margin-right: 5px;
+    position: relative;
+    top: 2px;
 }
 .priv-header-resources .header-search-bar {
     margin-right: 10px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    padding: 6px;
 }
 
-.priv-header-resources input {
-    /* display: none; */
+.priv-header-resources .header-search-bar input {
+    display: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+.priv-header-resources .header-search-bar .fa-times {
+    display: none;
+    font-size: 1.1rem;
+}
+
+.priv-header-resources .header-search-bar.focused {
+    margin-right: 10px;
     border: solid white 1px;
     background-color: rgba(0,0,0, 0.8);
     color: white;
+    padding: 6px;
+    transition: 400ms;
+}
 
+.priv-header-resources .header-search-bar.focused input {
+    display: initial;
+}
+
+.priv-header-resources .header-search-bar.focused .fa-times {
+    display: initial;
 }
 
 .priv-header-resources input:focus {
