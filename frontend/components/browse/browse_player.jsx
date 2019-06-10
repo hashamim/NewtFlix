@@ -13,9 +13,27 @@ class BrowsePlayer extends React.Component{
         }
         this.updateList = this.updateList.bind(this);
         this.myRef = React.createRef();
+        this.checkScrollPast = this.checkScrollPast.bind(this);
     }
     componentDidMount(){
         this.props.fetchShow();
+        window.addEventListener("scroll", this.checkScrollPast);
+    }
+    componentWillUnmount(){
+        window.removeEventListener("scroll", this.checkScrollPast());
+    }
+    checkScrollPast(){
+        const videoPlayer = document.getElementById("top-video");
+        if (videoPlayer && (window.pageYOffset / videoPlayer.clientHeight > 0.6)){
+            console.log("checkScrollPast")
+            if(this.myRef.current && !this.myRef.current.paused){
+                this.myRef.current.pause();
+            }
+        } else {
+            if (this.myRef.current && this.myRef.current.paused){
+                this.myRef.current.play();
+            }
+        }
     }
     changeMuted() {
         if (this.state.muted) {
@@ -39,7 +57,7 @@ class BrowsePlayer extends React.Component{
         }
         const muteButton = <img onClick={() => this.changeMuted()}
             src={this.myRef.current && !this.state.muted ? window.volume_image : window.mute_image} />;
-        return <div className="video-container">
+        return <div className="video-container" id="top-video">
             <video ref={this.myRef} width="100%" autoPlay muted src={this.props.show ? this.props.show.video_url : null} type="video/mp4" >
                 Your Browser Does Not Support This Video
                 </video>
