@@ -13,26 +13,38 @@ class BrowsePlayer extends React.Component{
         }
         this.updateList = this.updateList.bind(this);
         this.myRef = React.createRef();
-        this.checkScrollPast = this.checkScrollPast.bind(this);
+        this.checkVideoInView = this.checkVideoInView.bind(this);
     }
     componentDidMount(){
         this.props.fetchShow();
-        window.addEventListener("scroll", this.checkScrollPast);
+        window.addEventListener("scroll", this.checkVideoInView);
+        window.addEventListener("focus", this.checkVideoInView);
+        window.addEventListener("blur", this.checkVideoInView);
     }
     componentWillUnmount(){
-        window.removeEventListener("scroll", this.checkScrollPast());
+        window.removeEventListener("scroll", this.checkVideoInView);
+        window.removeEventListener("focus", this.checkVideoInView);
+        window.removeEventListener("blur", this.checkVideoInView);
     }
-    checkScrollPast(){
+    checkVideoInView(focusEvent){
+        if(this.myRef.current === undefined){
+            return;
+        }
+        debugger
         const videoPlayer = document.getElementById("top-video");
-        if (videoPlayer && (window.pageYOffset / videoPlayer.clientHeight > 0.6)){
-            console.log("checkScrollPast")
-            if(this.myRef.current && !this.myRef.current.paused){
-                this.myRef.current.pause();
+        if(focusEvent.type === "scroll" || focusEvent.type === "focus"){
+            if (videoPlayer && (window.pageYOffset / videoPlayer.clientHeight > 0.5)){
+                console.log("checkScrollPast")
+                if(!this.myRef.current.paused){
+                    this.myRef.current.pause();
+                }
+            } else {
+                if (this.myRef.current.paused){
+                    this.myRef.current.play();
+                }
             }
-        } else {
-            if (this.myRef.current && this.myRef.current.paused){
-                this.myRef.current.play();
-            }
+        } else if (focusEvent.type === "blur"){
+            this.myRef.current.pause();
         }
     }
     changeMuted() {
