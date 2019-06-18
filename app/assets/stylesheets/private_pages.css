@@ -87,6 +87,7 @@
     background-color: transparent;
     border: none;
     color: white;
+    transition: width 1s ease-in-out;
 }
 
 .priv-header-resources .header-search-bar .fa-times {
@@ -94,14 +95,15 @@
     font-size: 1.1rem;
 }
 
+
 .priv-header-resources .header-search-bar.focused {
-    margin-right: 10px;
     border: solid white 1px;
     background-color: rgba(0,0,0, 0.8);
-    color: white;
-    padding: 6px;
-    transition: 400ms;
+    /* color: white; */
+    /* padding: 6px; */
+    transition: width 1s ease-in-out;
 }
+
 
 .priv-header-resources .header-search-bar.focused input {
     display: initial;

@@ -30,7 +30,6 @@ class BrowsePlayer extends React.Component{
         if(this.myRef.current === undefined){
             return;
         }
-        debugger
         const videoPlayer = document.getElementById("top-video");
         if(focusEvent.type === "scroll" || focusEvent.type === "focus"){
             if (videoPlayer && (window.pageYOffset / videoPlayer.clientHeight > 0.5)){

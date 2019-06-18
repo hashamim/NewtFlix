@@ -23,6 +23,7 @@ class Main extends React.Component{
         this.inputRef = React.createRef();
         this.handleX = this.handleX.bind(this);
         this.focusSearch = this.focusSearch.bind(this);
+        this.blurSearch = this.blurSearch.bind(this);
     }
     componentDidMount(){
         window.onscroll = () => {
@@ -32,22 +33,34 @@ class Main extends React.Component{
                 this.setState({atTop: false})
             }
         };
+
     }
     componentWillUnmount() {
         window.onscroll = null;
     }
     focusSearch(e){
-        this.props.history.push("/browse/search");
         this.setState({ searchFocused: true }, () => this.inputRef.current.focus());
-
+    }
+    blurSearch(){
+        debugger
+        if(this.state.searchVal === ""){
+            this.setState({searchFocused: false});
+        }
     }
     handleSearch(e){
+        if(this.state.searchVal === ""){
+            this.props.history.push("/browse/search");
+        }
         this.setState({searchVal: e.target.value});
+        if (e.target.value === "") {
+            this.props.history.push("/browse");
+            return
+        }
         this.props.search(e.target.value);
         console.log(e.target.value);
     }
-    handleX(){
-        this.setState({searchVal: ""});
+    handleX() {
+        this.setState({searchVal: ""});  
     }
     render(){
         return (
@@ -62,10 +75,10 @@ class Main extends React.Component{
                         </div>
                     </div>
                     <div className="priv-header-resources">
-                        <div className={"header-search-bar" + (this.state.searchFocused ? " focused" : "")} onClick={this.focusSearch} onBlur={() => this.setState({searchFocused: false})}>
+                        <div className={"header-search-bar" + (this.state.searchFocused ? " focused" : "")} onClick={this.focusSearch} onBlur={this.blurSearch}>
                             <i className="fas fa-search"></i>
                             <input type="text" placeholder="Title, Person, Genre" value={this.state.searchVal} onChange={this.handleSearch} ref={this.inputRef}></input>
-                            {/* <i className="fas fa-times" onClick={this.handleX}></i> */}
+                            <i className="fas fa-times" onClick={this.handleX}></i>
                         </div>
                         <div className="profile-dropdown">
                             <img src={window.profiles.green} onClick={this.props.logout}/>
