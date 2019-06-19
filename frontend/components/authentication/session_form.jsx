@@ -37,11 +37,24 @@ class SessionForm extends React.Component{
     }
     demoLogin(e){
         e.preventDefault();
-        if(this.props.formType === SIGNUP_TEXT){
-            <Redirect to='/login' />
-        }else {
-            this.props.action({email: "email@example.com", password: "password"});
-        }
+        let email = "email@example.com".split("");
+        let password = "password".split("");
+        var intervalId = setInterval(() => {
+            if(email.length > 0){
+                this.setState({email: (this.state.email + email.shift())});
+            } else {
+                clearInterval(intervalId);
+                intervalId = setInterval(()=>{
+                    if(password.length > 0){
+                        this.setState({password: (this.state.password + password.shift())});
+                    } else {
+                        clearInterval(intervalId);
+                        this.props.action(this.state);
+                    }
+                },100)
+            }
+            
+        },100);
     }
 
     render(){
