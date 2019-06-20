@@ -68,6 +68,12 @@ class Watch extends React.Component{
         this.setState({ currentSec: Math.max(this.state.currentSec - 5, 0) },
             () => this.player.current.currentTime = this.state.currentSec);
     }
+    fullScreen() {
+        this.player.current.requestFullscreen();
+    }
+    goNext() {
+        this.setState({currentSec: this.duration},() => this.player.current.currentTime = this.duration)
+    }
     render(){
         if(this.player.current){
             this.duration = this.player.current.duration;
@@ -121,9 +127,9 @@ class Watch extends React.Component{
                                     <span>{this.props.show ? this.props.show.title : null}</span>
                                 </div>
                                 <div className="right-controls">
-                                    <i className="fas fa-step-forward"></i>
+                                    <i className="fas fa-step-forward" onClick={()=>this.goNext()}></i>
                                     <i className="fas fa-closed-captioning"></i>
-                                    <i className="fas fa-compress"></i>
+                                    <i className="fas fa-compress" onClick={()=>this.fullScreen()}></i>
                                 </div>
                             </div>
                         </div>
