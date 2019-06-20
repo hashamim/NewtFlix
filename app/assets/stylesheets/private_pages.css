@@ -254,19 +254,28 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    transition: 600ms ease-in-out;
 }
 
 .row-container.active {
     padding: 0 1%;
+    transition: 600ms ease-in-out;
 }
 
 .show-container {
     position: relative;
     height: 100%;
     background-color: black;
-    transition: 250ms;
-    max-width: 19.6%;
+    width: 19.6%;
     margin: 0.2%;
+    transition: 600ms ease-in-out;
+
+}
+
+.show-container.hovered {
+    height: 150%;
+    transition: 600ms ease-in-out;
+    width: 29%;
 }
 
 .show-container .title-card {
@@ -278,11 +287,6 @@
     display: none;
 }
 
-.show-container.hovered {
-    height: 150%;
-    transition-duration: 400ms;
-    min-width: 29%
-}
 
 .show-interface {
     position: absolute;
@@ -301,6 +305,10 @@
     justify-content: space-between;
     width: 100%;
     padding-bottom: 7%
+}
+.show-quick-interface h1 {
+    overflow: visible;
+    white-space: nowrap;
 }
 
 .show-info .play-icon {
