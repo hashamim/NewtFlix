@@ -55,7 +55,6 @@ const Splash = (props) => {
                                 const copyText = document.getElementById("copy-text");
                                 copyText.style.display = "initial"
                                 copyText.select();
-                                debugger
                                 document.execCommand("copy");
                                 copyText.style.display = "none";
                                 }}>

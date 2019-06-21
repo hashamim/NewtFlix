@@ -29,7 +29,6 @@ class Watch extends React.Component{
     }
     autoPlayVideo(){
         if(this.player.current.paused){
-        console.log(this.player.current.muted = false);
         }
     }
     setActive(){
@@ -44,7 +43,6 @@ class Watch extends React.Component{
         this.setState({paused: false});
         this.seekUpdateInterval = setInterval(()=>{
             this.setState({currentSec: this.player.current.currentTime});
-            debugger
             if(this.player.current.currentTime === this.player.current.duration){
                 this.setState({paused: true});
             }},

@@ -42,7 +42,6 @@ class Main extends React.Component{
         this.setState({ searchFocused: true }, () => this.inputRef.current.focus());
     }
     blurSearch(){
-        debugger
         if(this.state.searchVal === ""){
             this.setState({searchFocused: false});
         }
@@ -57,7 +56,6 @@ class Main extends React.Component{
             return
         }
         this.props.search(e.target.value);
-        console.log(e.target.value);
     }
     handleX() {
         // this.setState({searchVal: ""});
