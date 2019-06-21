@@ -60,7 +60,8 @@ class Main extends React.Component{
         console.log(e.target.value);
     }
     handleX() {
-        this.setState({searchVal: ""});  
+        // this.setState({searchVal: ""});
+        this.handleSearch({target: {value: ""}});
     }
     render(){
         return (
