@@ -80,14 +80,15 @@
     background-color: transparent;
     color: white;
     padding: 6px;
+    transition: background-color 500ms ease;
 }
 
 .priv-header-resources .header-search-bar input {
-    display: none;
+    width: 0;
     background-color: transparent;
     border: none;
     color: white;
-    transition: width 1s ease-in-out;
+    transition: width 700ms ease-in-out;
 }
 
 .priv-header-resources .header-search-bar .fa-times {
@@ -99,14 +100,12 @@
 .priv-header-resources .header-search-bar.focused {
     border: solid white 1px;
     background-color: rgba(0,0,0, 0.8);
-    /* color: white; */
-    /* padding: 6px; */
-    transition: width 1s ease-in-out;
+    transition: background-color 2s ease;
 }
 
 
 .priv-header-resources .header-search-bar.focused input {
-    display: initial;
+    width: 170px;
 }
 
 .priv-header-resources .header-search-bar.focused .fa-times {
@@ -490,3 +489,4 @@
 .play-bar .seek-bar:focus {
     outline: 0;
 }
+
