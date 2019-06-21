@@ -32,3 +32,6 @@
 #ignore bundle
 /app/assets/javascripts/bundle.js
 /app/assets/javascripts/bundle.js.map
+
+#mac DS_store
+.DS_Store

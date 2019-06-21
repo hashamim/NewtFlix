@@ -24,7 +24,7 @@ const Private = ({ loggedIn, path, component: Component }) => (
         render={props => (
             loggedIn ?
                 <Component {...props} /> :
-                <Redirect to='/login' />
+                <Redirect to='/' />
         )
         }
     />

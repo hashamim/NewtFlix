@@ -80,7 +80,7 @@ class Main extends React.Component{
                             <input type="text" placeholder="Title, Person, Genre" value={this.state.searchVal} onChange={this.handleSearch} ref={this.inputRef}></input>
                             <i className="fas fa-times" onClick={this.handleX}></i>
                         </div>
-                        <div className="profile-dropdown">
+                        <div className="profile-dropdown" aria-label="signout" data-balloon-pos="down">
                             <img src={window.profiles.green} onClick={this.props.logout}/>
                         </div>
 

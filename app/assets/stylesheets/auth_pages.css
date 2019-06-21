@@ -67,7 +67,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 90px);
 }
 
 .splash-content .ctn-main h1 {
@@ -216,5 +216,29 @@
 
 .session-form-container a:hover {
     text-decoration: underline;
+}
+
+.splash-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 10%;
+    background-color: rgba(0,0,0,0.8);
+    font-size: 30px;
+}
+
+.splash-footer i {
+    cursor: pointer;
+    color: #c0c0c0;
+}
+
+.splash-footer i:hover {
+    color: white;
+}
+
+.splash-footer i:active {
+    color: rgb(229,9,20);
 }
 

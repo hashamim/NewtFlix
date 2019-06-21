@@ -69,7 +69,7 @@ class BrowsePlayer extends React.Component{
         const muteButton = <img onClick={() => this.changeMuted()}
             src={this.myRef.current && !this.state.muted ? window.volume_image : window.mute_image} />;
         return <div className="video-container" id="top-video">
-            <video ref={this.myRef} width="100%" autoPlay muted src={this.props.show ? this.props.show.video_url : null} type="video/mp4" >
+            <video ref={this.myRef} width="100%" autoPlay src={this.props.show ? this.props.show.video_url : null} type="video/mp4" >
                 Your Browser Does Not Support This Video
                 </video>
             <div className="video-buttons">
