@@ -10,7 +10,7 @@ class Watch extends React.Component{
         this.state = {
             controlsActive: false,
             currentSec: 0,
-            paused: true,
+            paused: false,
             volume: 25,
         }
         this.player = React.createRef();
@@ -21,6 +21,11 @@ class Watch extends React.Component{
     componentDidMount(){
         this.props.fetchShow(this.props.match.params.show_id);
         this.player.current.volume = this.state.volume / 50;
+        this.play();
+    }
+    componentWillUnmount(){
+        clearTimeout(this.timer);
+        clearInterval(this.seekUpdateInterval);
     }
     autoPlayVideo(){
         if(this.player.current.paused){
@@ -39,6 +44,7 @@ class Watch extends React.Component{
         this.setState({paused: false});
         this.seekUpdateInterval = setInterval(()=>{
             this.setState({currentSec: this.player.current.currentTime});
+            debugger
             if(this.player.current.currentTime === this.player.current.duration){
                 this.setState({paused: true});
             }},
