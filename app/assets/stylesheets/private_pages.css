@@ -253,12 +253,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    transition: 600ms ease-in-out;
+    transition: 300ms ease-in-out;
 }
 
 .row-container.active {
     padding: 0 1%;
-    transition: 600ms ease-in-out;
+    transition: 300ms ease-in-out;
 }
 
 .show-container {
@@ -267,13 +267,12 @@
     background-color: black;
     width: 19.6%;
     margin: 0.2%;
-    transition: 600ms ease-in-out;
-
+    transition: 300ms ease-in-out;
 }
 
 .show-container.hovered {
     height: 150%;
-    transition: 600ms ease-in-out;
+    transition: 300ms ease-in-out;
     width: 29%;
 }
 
