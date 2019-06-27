@@ -56,7 +56,6 @@ class Show extends React.Component{
         }
 
         const genresRender = !this.props.genre_ids ? null : this.props.genre_ids.map((genre_id,ind) => <li key={ind}>{this.props.genres[genre_id].name}</li>)
-        debugger
         const hoveredElements = <>
             <video className="show-video-player" 
                 width="100%" 
