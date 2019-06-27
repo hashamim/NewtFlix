@@ -91,6 +91,26 @@ class Main extends React.Component{
                     <Route path="/browse/my-list" component={MyList} />
                     <Route component={Browse} />
                 </Switch>
+                <div className="main-footer">
+                    <a href="https://github.com/hashamim" aria-label="github" data-balloon-pos="up">
+                        <i className="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/hasnainshamim" aria-label="linkedin" data-balloon-pos="up">
+                        <i className="fab fa-linkedin"></i>
+                    </a>
+                    <div aria-label="copy email to clipboard" data-balloon-pos="up">
+                        <i className="fas fa-at" onClick={() => {
+                            const copyText = document.getElementById("copy-text");
+                            copyText.style.display = "initial"
+                            copyText.select();
+                            document.execCommand("copy");
+                            copyText.style.display = "none";
+                        }}>
+
+                        </i>
+                        <input style={{ display: "none" }} type="text" id="copy-text" value="hashamim@gmail.com" readOnly />
+                    </div>
+                </div>
             </>
         )
     }

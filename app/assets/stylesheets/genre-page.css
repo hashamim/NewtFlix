@@ -1,9 +1,10 @@
 .genre-page-container {
     background-color: #141414;
-    height: 100%;
+    min-height: 100%;
     width: 100%;
     color: white;
     font-size: 11px;
+    padding-bottom: 55px;
 }
 .genre-page-header {
     color: white;
@@ -11,6 +12,9 @@
     top: 68px;
     padding-left: 4%;
     font-size: 2vw;
+    z-index: 3;
+    background-color: #141414;
+    width: 100%;
 }
 
 .genre-shows-list {
