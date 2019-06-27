@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "open-uri"
+List.destroy_all
 ShowGenre.destroy_all
 Show.destroy_all
 User.destroy_all
@@ -15,7 +16,7 @@ Genre.destroy_all
 demo = User.create(profile: "Demo", email: "email@example.com", password: "password")
 
 videos = {}
-videos[:stranger_things] = open("https://newtflix-dev.s3.amazonaws.com/Y481W8bavTg5uasHf6TzBRmD")
+videos[:stranger_things] = open("https://newtflix-dev.s3.amazonaws.com/Stranger_Things_Season_1_Trailer.mp4")
 videos[:house_of_cards] = open("https://newtflix-dev.s3.amazonaws.com/House+of+Cards++Official+Trailer+%5BHD%5D++Netflix.mp4")
 videos[:avengers] = open("https://newtflix-dev.s3.amazonaws.com/Marvel+Studios+Avengers+Infinity+War+Official+Trailer.mp4")
 videos[:thor] = open("https://newtflix-dev.s3.amazonaws.com/Thor+Ragnarok+Official+Trailer.mp4")
@@ -27,9 +28,12 @@ videos[:arrested] = open("https://newtflix-dev.s3.amazonaws.com/Arrested+Develop
 videos[:it] = open("https://newtflix-dev.s3.amazonaws.com/IT+CHAPTER+TWO+-+Official+Teaser+Trailer+%5BHD%5D.mp4")
 videos[:toystory] = open("https://newtflix-dev.s3.amazonaws.com/Toy+Story+4++Official+Trailer.mp4")
 videos[:aladdin] = open("https://newtflix-dev.s3.amazonaws.com/%F0%9F%8E%A5+ALADDIN+(1992)++Full+Movie+Trailer+in+HD++1080p.mp4")
-videos[:friends] = open("")
+videos[:us] = open("https://newtflix-dev.s3.amazonaws.com/Us+-+Official+Trailer+%5BHD%5D.mp4")
+videos[:quiet] = open("https://newtflix-dev.s3.amazonaws.com/A+Quiet+Place+(2018)+-+Official+Trailer+-+Paramount+Pictures.mp4")
+videos[:getout] = open("https://newtflix-dev.s3.amazonaws.com/Get+Out+-+In+Theaters+This+February+-+Official+Trailer.mp4")
+videos[:lionking] = open("https://newtflix-dev.s3.amazonaws.com/The+Lion+King+Theatrical+Trailer+(1994).mp4")
 title_cards = {}
-title_cards[:stranger_things] = open("https://newtflix-dev.s3.amazonaws.com/cj981Fty7duAJwHZ95VPFGex")
+title_cards[:stranger_things] = open("https://newtflix-dev.s3.amazonaws.com/stranger_things.jpeg")
 title_cards[:house_of_cards] = open("https://newtflix-dev.s3.amazonaws.com/house_of_cards.jpg")
 title_cards[:avengers] = open("https://newtflix-dev.s3.amazonaws.com/Avengers-Infinity-War-Movie-Poster-Marvel-Comics-Canvas-painting-Superheroes-Alliance-Sci-fi-Film-Prints-Wall.jpeg_640x640.jpeg")
 title_cards[:thor] = open("https://newtflix-dev.s3.amazonaws.com/thor-ragnarok-poster.jpg")
@@ -41,7 +45,10 @@ title_cards[:arrested] = open("https://newtflix-dev.s3.amazonaws.com/Watch-Arres
 title_cards[:it] = open("https://newtflix-dev.s3.amazonaws.com/it.jpg")
 title_cards[:toystory] = open("https://newtflix-dev.s3.amazonaws.com/toystory4.jpg")
 title_cards[:aladdin] = open("https://newtflix-dev.s3.amazonaws.com/aladdin.jpg")
-title_cards[:friends] = open("")
+title_cards[:us] = open("https://newtflix-dev.s3.amazonaws.com/us.jpg")
+title_cards[:quiet] = open("https://newtflix-dev.s3.amazonaws.com/aquietplace.jpg")
+title_cards[:getout] = open("https://newtflix-dev.s3.amazonaws.com/getout.jpeg")
+title_cards[:lionking] = open("https://newtflix-dev.s3.amazonaws.com/lionking.jpg")
 
 
 stranger_things =  Show.create(title: "Stranger Things", year: 2017, maturity_rating: "TV-14", description: "When a young boy vanishes a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and a strange little girl")
@@ -56,6 +63,10 @@ it_show =  Show.create(title: "It", year: 2017, maturity_rating: "R", descriptio
 arrested = Show.create(title: "Arrested Development", year: 2018, maturity_rating: "TV-14", description: "Level-headed son Michael Bluth takes over family affairs after his father is imprisoned. But the rest of his spoiled, dysfunctional family are making his job unbearable.")
 aladdin = Show.create(title: "Aladdin", year: 1992, maturity_rating: "G", description: "A kindhearted street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make their deepest wishes come true.")
 toystory = Show.create(title: "Toy Story 4", year: 2019, maturity_rating: "G", description: "When a new toy called \"Forky\" joins Woody and the gang, a road trip alongside old and new friends reveals how big the world can be for a toy.")
+us = Show.create(title: "Us", year: 2019, maturity_rating: "R", description: "A family's serene beach vacation turns to chaos when their doppelgängers appear and begin to terrorize them.")
+quiet = Show.create(title: "A Quiet Place", year: 2019, maturity_rating: "Pg-13", description: "In a post-apocalyptic world, a family is forced to live in silence while hiding from monsters with ultra-sensitive hearing.")
+getout = Show.create(title: "Get Out", year: 2017, maturity_rating: "R", description: "A young African-American visits his white girlfriend's parents for the weekend, where his simmering uneasiness about their reception of him eventually reaches a boiling point.")
+lionking = Show.create(title: "Lion King", year: 1994, maturity_rating: "G", description: "To survive and grow into a powerful adult lion, Simba must perfect his savage pounce and master fighting with all four paws. Scrap with hyenas, dash through an elephant grave-yard, defeat your evil uncle Scar and recapture the Pridelands.")
 
 genres = Genre.create([{name: "Action"}, {name: "Comedy"},{name: "Horror"},{name: "Disney"},{name: "Thriller"},{name: "Animation"}])
 genres.push(Genre.create(name: "TV Shows"))
@@ -73,22 +84,31 @@ genres[1].shows << arrested
 
 genres[2].shows << it_show
 genres[2].shows << stranger_things
+genres[2].shows << us
+genres[2].shows << quiet
+genres[2].shows << getout
 
 genres[3].shows << avengers
 genres[3].shows << thor
 genres[3].shows << toystory
 genres[3].shows << aladdin
+genres[3].shows << lionking
 
 genres[4].shows << john_wick
 genres[4].shows << house_cards
+genres[4].shows << us
+genres[4].shows << quiet
+genres[4].shows << getout
 
 genres[5].shows << one_punch_man
 genres[5].shows << toystory
 genres[5].shows << aladdin
+genres[5].shows << bojack
+genres[5].shows << lionking
 
 
-demo.shows << genres[0].shows
-demo.shows << genres[1].shows
+# demo.shows << genres[0].shows
+# demo.shows << genres[1].shows
 
 stranger_things.video.attach(io: videos[:stranger_things], filename: "stranger_things.mp4")
 stranger_things.title_card.attach(io: title_cards[:stranger_things], filename: "stranger_things.jpg")
@@ -114,3 +134,11 @@ toystory.video.attach(io: videos[:toystory], filename: "toystory.mp4")
 toystory.title_card.attach(io: title_cards[:toystory], filename: "toystory.jpg")
 aladdin.video.attach(io: videos[:aladdin], filename: "aladdin.mp4")
 aladdin.title_card.attach(io: title_cards[:aladdin], filename: "aladdin.jpg")
+us.video.attach(io: videos[:us], filename: "us.mp4")
+us.title_card.attach(io: title_cards[:us], filename: "us.jpg")
+quiet.video.attach(io: videos[:quiet], filename: "quiet.mp4")
+quiet.title_card.attach(io: title_cards[:quiet], filename: "quiet.jpg")
+getout.video.attach(io: videos[:getout], filename: "getout.mp4")
+getout.title_card.attach(io: title_cards[:getout], filename: "getout.jpg")
+lionking.video.attach(io: videos[:lionking], filename: "lionking.mp4")
+lionking.title_card.attach(io: title_cards[:lionking], filename: "lionking.jpg")

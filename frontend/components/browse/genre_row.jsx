@@ -16,13 +16,22 @@ class GenreRow extends React.Component{
         this.state = {
             currentRow: 0,
         }
-        
+        let rows = this.props.showsContained.slice();
+        this.rows = [];
+        while(rows.length > 0){
+            this.rows.push(rows.splice(0,5));
+        }
     }
     render(){
+
         return (
             <>
                 <Link to={`/browse/genres/${this.props.id}`} className="genre-title">{this.props.name}<i className="fas fa-chevron-right"></i></Link> {/* Make Clickable */}
-                <ShowRow showsContained={this.props.showsContained} currentRow={this.props.currentGenre} setThisRow={this.props.setThisGenre} unsetThisRow={this.props.unsetThisGenre} />
+                <div className="genre-row">
+                    {/* <img className="left-carousel-btn" src={window.left_chevron_image}></img> */}
+                    <ShowRow showsContained={this.rows[this.state.currentRow] ? this.rows[this.state.currentRow] : []} currentRow={this.props.currentGenre} setThisRow={this.props.setThisGenre} unsetThisRow={this.props.unsetThisGenre} />
+                    {/* <img className="right-carousel-btn" src={window.right_chevron_image}></img> */}
+                </div>
             </>
         )
     }

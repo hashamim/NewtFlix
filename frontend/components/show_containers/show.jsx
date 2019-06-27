@@ -56,6 +56,7 @@ class Show extends React.Component{
         }
 
         const genresRender = !this.props.genre_ids ? null : this.props.genre_ids.map((genre_id,ind) => <li key={ind}>{this.props.genres[genre_id].name}</li>)
+        debugger
         const hoveredElements = <>
             <video className="show-video-player" 
                 width="100%" 
@@ -63,7 +64,7 @@ class Show extends React.Component{
                 ref={this.myRef}
                 autoPlay
                 muted
-                src={this.props.video_url ? this.props.video_url : null}
+                src={this.props.video ? this.props.video : null}
                 >
                 Your Browser Does Not Support This Video
             </video>
@@ -98,6 +99,7 @@ class Show extends React.Component{
 
 const msp = (state,ownProps) => {
     return {
+    video: state.entities.shows[ownProps.id].video_url,
     genres: state.entities.genres,
     isAdded: state.entities.user.showIds.includes(parseInt(ownProps.id)),
 }};
