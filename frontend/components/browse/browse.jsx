@@ -12,10 +12,11 @@ class Browse extends React.Component {
         this.state = {
             currentGenre: null,
             muted: true,
+            currentShow: null,
         }
     }
     componentDidMount(){
-        this.props.fetchShows();
+        this.props.fetchShows().then((dispatchedAction)=>this.setState({currentShow: Math.floor(Math.random() * Object.keys(dispatchedAction.shows).length)}));
     }
     setCurrentGenre(ind){
         this.setState({currentGenre: ind});
@@ -23,11 +24,10 @@ class Browse extends React.Component {
     }
 
     render(){
-        debugger
         const genreRows = this.props.genres.map((genre, ind) => 
             <GenreRow key={ind} name={genre.name} id={genre.id} currentGenre={this.state.currentGenre === ind ? true : false} unsetThisGenre={() => this.setCurrentGenre(null)}setThisGenre={() => this.setCurrentGenre(ind)} showsContained={genre.show_ids.map((showId)=> this.props.shows[showId])}/>)
         return <div className="content-main">
-            {Object.keys(this.props.shows)[0] ? <BrowsePlayer showId={Object.keys(this.props.shows)[0]} /> : null}
+            {this.state.currentShow ? <BrowsePlayer showId={Object.keys(this.props.shows)[this.state.currentShow]} /> : null}
             {genreRows}
         </div>
     }
