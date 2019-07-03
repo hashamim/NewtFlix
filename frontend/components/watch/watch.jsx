@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { getShow } from '../../actions/show_actions';
 
-
+const SLIDER_SEGMENTS = 1000
 class Watch extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            pointerActive: false,
             controlsActive: false,
             currentSec: 0,
             paused: false,
@@ -34,10 +35,14 @@ class Watch extends React.Component{
     setActive(){
         clearTimeout(this.timer);
         this.timer = setTimeout(this.unSetActive,1000);
-        if(this.state.controlsActive === false){
-            this.setState({controlsActive: true})
+        if(this.state.pointerActive === false){
+            this.setState({pointerActive: true})
         }
     }
+    unSetActive() {
+        this.setState({ pointerActive: false });
+    }
+
     play(){
         this.player.current.play();
         this.setState({paused: false});
@@ -46,18 +51,16 @@ class Watch extends React.Component{
             if(this.player.current.currentTime === this.player.current.duration){
                 this.setState({paused: true});
             }},
-            this.player.current.duration)
+            this.player.current.duration / SLIDER_SEGMENTS * 1000)
     }
     pause() {
         this.player.current.pause();
         this.setState({paused: true});
     }
-    unSetActive(){
-        this.setState({controlsActive: false});  
-    }
     handleSeek(e){
-        this.setState({currentSec: e.target.value/10});
-        this.player.current.currentTime = e.target.value / 10;
+        debugger
+        this.setState({ currentSec: e.target.value / SLIDER_SEGMENTS * this.player.current.duration});
+        this.player.current.currentTime = e.target.value / SLIDER_SEGMENTS * this.player.current.duration;
     }
     handleVolume(e){
         this.setState({volume: e.target.value})
@@ -111,14 +114,14 @@ class Watch extends React.Component{
                 <div className={"controls-container"} 
                     onPointerMove={() => this.setActive()}
                 >
-                    <div className={"hidden-controls" + (!this.state.controlsActive ? " hidden" : "")}>
+                    <div className={"hidden-controls" + ((this.state.pointerActive || this.state.controlsActive) ? "" : " hidden")}>
                         <Link to="/browse"><i className="fas fa-arrow-left fa-2x"></i> <span>Back to Browse</span></Link>
                         <div className="bottom-controls">
                             <div className="play-bar">
-                                <input type="range" min="0" max={this.duration * 10} className="seek-bar" value={this.state.currentSec * 10} onChange={this.handleSeek}/>
+                                <input type="range" min="0" max={SLIDER_SEGMENTS} className="seek-bar" value={this.state.currentSec / this.duration * SLIDER_SEGMENTS} onChange={this.handleSeek}/>
                             </div>
                             <div className="player-controls" onPointerLeave={()=>{document.getElementById("volume-input").blur()}}>
-                                <div className="left-controls">
+                                <div className="left-controls" >
                                     {playButton}
                                     <i className="fas fa-undo-alt" onClick={()=> this.seekBackward()}></i>
                                     <i className="fas fa-redo-alt" onClick={()=>this.seekForward()}></i>
