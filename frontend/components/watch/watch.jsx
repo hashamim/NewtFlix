@@ -42,7 +42,16 @@ class Watch extends React.Component{
     unSetActive() {
         this.setState({ pointerActive: false });
     }
-
+    buttonHover(){
+        // console.log("hovering");
+        this.setState({ controlsActive: true });
+    }
+    buttonUnhover(){
+        // console.log("leaving");
+        if(this.state.controlsActive){
+            this.setState({ controlsActive: false });
+        }
+    }
     play(){
         this.player.current.play();
         this.setState({paused: false});
@@ -58,7 +67,6 @@ class Watch extends React.Component{
         this.setState({paused: true});
     }
     handleSeek(e){
-        debugger
         this.setState({ currentSec: e.target.value / SLIDER_SEGMENTS * this.player.current.duration});
         this.player.current.currentTime = e.target.value / SLIDER_SEGMENTS * this.player.current.duration;
     }
@@ -121,7 +129,7 @@ class Watch extends React.Component{
                                 <input type="range" min="0" max={SLIDER_SEGMENTS} className="seek-bar" value={this.state.currentSec / this.duration * SLIDER_SEGMENTS} onChange={this.handleSeek}/>
                             </div>
                             <div className="player-controls" onPointerLeave={()=>{document.getElementById("volume-input").blur()}}>
-                                <div className="left-controls" >
+                                <div className="left-controls" onPointerEnter={()=>this.buttonHover()} onPointerLeave={()=>this.buttonUnhover()}>
                                     {playButton}
                                     <i className="fas fa-undo-alt" onClick={()=> this.seekBackward()}></i>
                                     <i className="fas fa-redo-alt" onClick={()=>this.seekForward()}></i>
