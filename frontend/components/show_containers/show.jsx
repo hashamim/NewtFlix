@@ -21,9 +21,6 @@ class Show extends React.Component{
     changeToHovered(){
         this.props.fetchGenres();
         this.setState({ hovered: true })
-        if(this.props.show.id === 80){
-            debugger
-        }
         this.props.setParentRow();
     }
     changeToUnHovered(){

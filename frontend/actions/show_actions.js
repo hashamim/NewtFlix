@@ -18,7 +18,6 @@ export const receiveShow = ({shows, genres, actors}) => ({
 })
 
 export const receiveSearchedShows = ({shows, search_ids}) => {
-    debugger
     return {
     type: RECEIVE_SEARCHED_SHOWS,
     shows,
