@@ -17,10 +17,13 @@ export const receiveShow = ({shows, genres, actors}) => ({
     actors,
 })
 
-export const receiveSearchedShows = ({shows}) => ({
+export const receiveSearchedShows = ({shows, search_ids}) => {
+    debugger
+    return {
     type: RECEIVE_SEARCHED_SHOWS,
     shows,
-})
+    search_ids,
+}}
 
 // Thunk
 

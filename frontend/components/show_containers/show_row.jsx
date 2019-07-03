@@ -9,10 +9,11 @@ class ShowRow extends React.Component{
         }
     }
     render() {
+        debugger
         return (
             <>
                 <div className={`row-container ${this.props.currentRow ? "active" : ""}`} >
-                    {this.props.showsContained.map((show, ind) => <Show key={ind} {...show} setParentRow={this.props.setThisRow} unsetParentRow={this.props.unsetThisRow}/>)}
+                    {this.props.showsContained.map((show, ind) => <Show key={ind} show={show} setParentRow={this.props.setThisRow} unsetParentRow={this.props.unsetThisRow}/>)}
                 </div>
                 <div className="collapsable">
 

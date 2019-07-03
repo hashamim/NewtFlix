@@ -21,6 +21,9 @@ class Show extends React.Component{
     changeToHovered(){
         this.props.fetchGenres();
         this.setState({ hovered: true })
+        if(this.props.show.id === 80){
+            debugger
+        }
         this.props.setParentRow();
     }
     changeToUnHovered(){
@@ -55,7 +58,7 @@ class Show extends React.Component{
             this.myRef.current.muted = this.state.muted;
         }
 
-        const genresRender = !this.props.genre_ids ? null : this.props.genre_ids.map((genre_id,ind) => <li key={ind}>{this.props.genres[genre_id].name}</li>)
+        const genresRender = !this.props.show.genre_ids ? null : this.props.show.genre_ids.map((genre_id,ind) => <li key={ind}>{this.props.genres[genre_id].name}</li>)
         const hoveredElements = <>
             <video className="show-video-player" 
                 width="100%" 
@@ -63,18 +66,18 @@ class Show extends React.Component{
                 ref={this.myRef}
                 autoPlay
                 muted
-                src={this.props.video ? this.props.video : null}
+                src={this.props.show.video_url ? this.props.show.video_url : null}
                 >
                 Your Browser Does Not Support This Video
             </video>
             <div className="show-interface" onClick={(e)=>this.divClick(e)}>
                 <div className="show-quick-interface">
                     <div className="show-info">
-                        <Link to={`/watch/${this.props.id}`}>
+                        <Link to={`/watch/${this.props.show.id}`}>
                             <img className="play-icon" src={window.play_image} />
                         </Link>
-                        <h1>{this.props.title}</h1>
-                        <span><h1>{this.props.maturity_rating}</h1></span>
+                        <h1>{this.props.show.title}</h1>
+                        <span><h1>{this.props.show.maturity_rating}</h1></span>
                         <ul>{genresRender}</ul>
                     </div>
                     <div className="show-actions">
@@ -88,8 +91,8 @@ class Show extends React.Component{
             </div>
         </>
         return (
-            <div className={"show-container" + (this.state.hovered ? " hovered" : "")} onPointerEnter={this.changeToHovered} onPointerLeave={this.changeToUnHovered}>
-                <img className="title-card" src={this.props.title_card_url} />
+            <div className={"show-container" + (this.state.hovered ? " hovered" : "")} onPointerEnter={this.changeToHovered} onPointerLeave={this.changeToUnHovered} >
+                <img className="title-card" src={this.props.show.title_card_url} />
                 {this.state.hovered ? hoveredElements : null}
             </div>
         )
@@ -98,16 +101,15 @@ class Show extends React.Component{
 
 const msp = (state,ownProps) => {
     return {
-    video: state.entities.shows[ownProps.id].video_url,
     genres: state.entities.genres,
-    isAdded: state.entities.user.showIds.includes(parseInt(ownProps.id)),
+    isAdded: state.entities.user.showIds.includes(parseInt(ownProps.show.id)),
 }};
 
 const mdp = (dispatch, ownProps) => {
     return {
-    fetchGenres: () => dispatch(getShow(ownProps.id)),
-    addToList: () => dispatch(createListItem(ownProps.id)),
-    removeFromList: () => dispatch(destroyListItem(ownProps.id)),
+    fetchGenres: () => dispatch(getShow(ownProps.show.id)),
+    addToList: () => dispatch(createListItem(ownProps.show.id)),
+    removeFromList: () => dispatch(destroyListItem(ownProps.show.id)),
 }}
 
 export default withRouter(connect(msp,mdp)(Show));

@@ -8,7 +8,7 @@ class SearchPage extends React.Component{
     render(){
         const showList = this.props.shows ? Object.values(this.props.shows) : []
 
-        return <div className="genre-page-container">
+        return <div className="show-page-container">
             <ShowsGroup shows={showList} />
         </div>
     }

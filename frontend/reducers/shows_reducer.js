@@ -4,11 +4,11 @@ export default (state = {}, action) => {
     Object.freeze(state);
     switch(action.type){
         case RECEIVE_SHOWS:
-            return merge({}, action.shows)
+            return merge({}, state, action.shows)
         case RECEIVE_SHOW:
             return merge({}, state, action.shows)
         case RECEIVE_SEARCHED_SHOWS:
-            return merge({}, action.shows)
+            return merge({}, state, action.shows)
         default:
             return state;
     }

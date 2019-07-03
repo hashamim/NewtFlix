@@ -15,7 +15,7 @@ class MyList extends React.Component {
     render() {
         const shows = this.props.list ? this.props.list.map((showId) => this.props.shows[showId]) : [];
         
-        return <div className="genre-page-container">
+        return <div className="show-page-container">
             <div className="genre-page-header">
                 <h1>{this.props.list ? this.props.list.name : null}</h1>
             </div>

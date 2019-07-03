@@ -8,6 +8,7 @@ import GenrePage from './genres/genre_page';
 import MyList from './my_list/my_list';
 import { queryShows } from '../actions/show_actions';
 import SearchPage from './search/search_page';
+import { searchSelector } from '../reducers/selectors';
 
 
 //Component
@@ -116,7 +117,7 @@ class Main extends React.Component{
     }
 }
 const msp = (state) => ({
-    searchShows: state.entities.shows,
+    searchShows: searchSelector(state),
 })
 const mdp = (dispatch) => ({
     logout: () => dispatch(logout()),

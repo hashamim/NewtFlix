@@ -23,6 +23,7 @@ class Browse extends React.Component {
     }
 
     render(){
+        debugger
         const genreRows = this.props.genres.map((genre, ind) => 
             <GenreRow key={ind} name={genre.name} id={genre.id} currentGenre={this.state.currentGenre === ind ? true : false} unsetThisGenre={() => this.setCurrentGenre(null)}setThisGenre={() => this.setCurrentGenre(ind)} showsContained={genre.show_ids.map((showId)=> this.props.shows[showId])}/>)
         return <div className="content-main">
