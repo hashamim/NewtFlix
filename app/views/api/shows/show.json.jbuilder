@@ -13,7 +13,7 @@ json.genres do
     @show.genres.each do |genre|
         json.set! genre.id do
             json.extract! genre, :id, :name
-            json.show_ids genre.shows.pluck(:id)
+            json.show_ids [@show.id]
         end
     end
 end
@@ -22,7 +22,7 @@ json.actors do
     @show.actors.each do |actor|
         json.set! actor.id do
             json.extract! actor, :id, :name
-            json.show_ids actor.shows.pluck(:id)
+            json.show_ids [@show.id]
         end
     end
 end
