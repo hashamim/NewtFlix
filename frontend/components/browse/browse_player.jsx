@@ -32,7 +32,7 @@ class BrowsePlayer extends React.Component{
         }
         const videoPlayer = document.getElementById("top-video");
         if(focusEvent.type === "scroll" || focusEvent.type === "focus"){
-            if (videoPlayer && (window.pageYOffset / videoPlayer.clientHeight > 0.5)){
+            if (videoPlayer && (window.pageYOffset / videoPlayer.clientHeight > 0.65)){
                 if(!this.myRef.current.paused){
                     this.myRef.current.pause();
                 }

@@ -28,7 +28,7 @@ class Browse extends React.Component {
             <GenreRow key={ind} name={genre.name} id={genre.id} currentGenre={this.state.currentGenre === ind ? true : false} unsetThisGenre={() => this.setCurrentGenre(null)}setThisGenre={() => this.setCurrentGenre(ind)} showsContained={genre.show_ids.map((showId)=> this.props.shows[showId])}/>)
         return <div className="content-main">
             {this.state.currentShow ? <BrowsePlayer showId={Object.keys(this.props.shows)[this.state.currentShow]} /> : null}
-            {genreRows}
+            {this.state.currentShow ? genreRows : null}
         </div>
     }
 }
