@@ -37,9 +37,6 @@ class GenreRow extends React.Component{
         while (rows.length > 0) {
             this.rows.push(rows.splice(0, 5));
         }
-        if(this.props.id === 50){
-        
-        }
         return (
             <>
                 <Link to={`/browse/genres/${this.props.id}`} className="genre-title">{this.props.name}<i className="fas fa-chevron-right"></i></Link> {/* Make Clickable */}

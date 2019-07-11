@@ -337,7 +337,7 @@
     width: 100%;
     padding-bottom: 7%
 }
-.show-quick-interface h1 {
+.show-quick-interface * {
     overflow: visible;
     white-space: nowrap;
 }
