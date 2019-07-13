@@ -16,13 +16,16 @@ class GenreRow extends React.Component{
         let ind = this.state.currentRow;
         ind += num;
         if(ind < 0){
-            ind = this.rows.length - 1;
+            this.transRef.current.style.left = "25vw";
+            setTimeout(() => this.setState({ currentRow: 0 }), 300);
         } else if (ind >= this.rows.length){
-            ind = 0;
+            this.transRef.current.style.left = `-${(this.rows.length - 1) * 100 + 25}vw`;
+            setTimeout(() => this.setState({ currentRow: this.rows.length-1 }), 300);
+        } else {
+            this.setState({
+                currentRow: ind,
+            })
         }
-        this.setState({
-            currentRow: ind,
-        })
     }
 
     render(){
@@ -40,7 +43,7 @@ class GenreRow extends React.Component{
             <>
                 <Link to={`/browse/genres/${this.props.id}`} className="genre-title">{this.props.name}<i className="fas fa-chevron-right"></i></Link> {/* Make Clickable */}
                 <div className="genre-container" onPointerEnter={()=>this.setState({hovered: true})} onPointerLeave={()=>this.setState({hovered: false})}>
-                    {(this.state.hovered && this.state.currentRow > 0)? <img className="left-carousel-btn" src={window.left_chevron_image} onClick={()=>this.moveCarousel(-1)}></img> : null}
+                    {this.state.hovered ? <img className="left-carousel-btn" src={window.left_chevron_image} onClick={()=>this.moveCarousel(-1)}></img> : null}
                     <div className={"genre-slider" + (this.props.currentGenre ? " active" : "")}>
                         <div className="genre-row" ref={this.transRef}>
                             {this.rows.map((row,ind)=>
@@ -48,7 +51,7 @@ class GenreRow extends React.Component{
                             )}
                         </div>
                     </div>
-                    {(this.state.hovered && this.state.currentRow < this.rows.length - 1)? <img className="right-carousel-btn" src={window.right_chevron_image} onClick={() => this.moveCarousel(1)}></img> : null}
+                    {this.state.hovered ? <img className="right-carousel-btn" src={window.right_chevron_image} onClick={() => this.moveCarousel(1)}></img> : null}
                 </div>
             </>
         )
