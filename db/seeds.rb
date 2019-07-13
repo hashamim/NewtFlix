@@ -32,6 +32,9 @@ videos[:us] = open("https://newtflix-dev.s3.amazonaws.com/Us+-+Official+Trailer+
 videos[:quiet] = open("https://newtflix-dev.s3.amazonaws.com/A+Quiet+Place+(2018)+-+Official+Trailer+-+Paramount+Pictures.mp4")
 videos[:getout] = open("https://newtflix-dev.s3.amazonaws.com/Get+Out+-+In+Theaters+This+February+-+Official+Trailer.mp4")
 videos[:lionking] = open("https://newtflix-dev.s3.amazonaws.com/The+Lion+King+Theatrical+Trailer+(1994).mp4")
+videos[:got] = open("https://newtflix-dev.s3.amazonaws.com/Game+of+Thrones+(2011-HBO+TV+Series)+Season+1+-+Official+Trailer+-+HD.mp4")
+videos[:mha] = open("https://newtflix-dev.s3.amazonaws.com/My+Hero+Academia+Season+4+Trailer+2++English+Subbed+%E3%80%8EHD%E3%80%8F.mp4")
+videos[:barry] = open("https://newtflix-dev.s3.amazonaws.com/BARRY+Official+Trailer+(2018).mp4")
 title_cards = {}
 title_cards[:stranger_things] = open("https://newtflix-dev.s3.amazonaws.com/stranger_things.jpeg")
 title_cards[:house_of_cards] = open("https://newtflix-dev.s3.amazonaws.com/house_of_cards.jpg")
@@ -49,7 +52,9 @@ title_cards[:us] = open("https://newtflix-dev.s3.amazonaws.com/us.jpg")
 title_cards[:quiet] = open("https://newtflix-dev.s3.amazonaws.com/aquietplace.jpg")
 title_cards[:getout] = open("https://newtflix-dev.s3.amazonaws.com/getout.jpeg")
 title_cards[:lionking] = open("https://newtflix-dev.s3.amazonaws.com/lionking.jpg")
-
+title_cards[:got] = open("https://newtflix-dev.s3.amazonaws.com/got.jpg")
+title_cards[:mha] = open("https://newtflix-dev.s3.amazonaws.com/mha.jpg")
+title_cards[:barry]= open("https://newtflix-dev.s3.amazonaws.com/barry.jpg")
 
 stranger_things =  Show.create(title: "Stranger Things", year: 2017, maturity_rating: "TV-14", description: "When a young boy vanishes a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and a strange little girl")
 house_cards =  Show.create(title: "House of Cards", year: 2018, maturity_rating: "TV-MA", description: "With Frank out of the picture, Claire Underwood steps fully into her own as the first woman president but faces formidable threats to her legacy")
@@ -67,6 +72,9 @@ us = Show.create(title: "Us", year: 2019, maturity_rating: "R", description: "A 
 quiet = Show.create(title: "A Quiet Place", year: 2019, maturity_rating: "Pg-13", description: "In a post-apocalyptic world, a family is forced to live in silence while hiding from monsters with ultra-sensitive hearing.")
 getout = Show.create(title: "Get Out", year: 2017, maturity_rating: "R", description: "A young African-American visits his white girlfriend's parents for the weekend, where his simmering uneasiness about their reception of him eventually reaches a boiling point.")
 lionking = Show.create(title: "Lion King", year: 1994, maturity_rating: "G", description: "To survive and grow into a powerful adult lion, Simba must perfect his savage pounce and master fighting with all four paws. Scrap with hyenas, dash through an elephant grave-yard, defeat your evil uncle Scar and recapture the Pridelands.")
+got = Show.create(title: "Game of Thrones", year: 2011, maturity_rating: "TV-MA", description: "Nine noble families fight for control over the mythical lands of Westeros, while an ancient enemy returns after being dormant for thousands of years.")
+mha = Show.create(title: "My Hero Academia", year: 2016, maturity_rating: "TV-14", description: "A superhero-loving boy without any powers is determined to enroll in a prestigious hero academy and learn what it really means to be a hero.")
+barry = Show.create(title: "Barry", year: 2018, maturity_rating: "TV-MA", description: "A hit man from the Midwest moves to Los Angeles and gets caught up in the city's theatre arts scene.")
 
 genres = Genre.create([{name: "Action"}, {name: "Comedy"},{name: "Horror"},{name: "Disney"},{name: "Thriller"},{name: "Animation"}])
 genres.push(Genre.create(name: "TV Shows"))
@@ -75,6 +83,9 @@ genres[0].shows << avengers
 genres[0].shows << thor
 genres[0].shows << john_wick
 genres[0].shows << one_punch_man
+genres[0].shows << got
+genres[0].shows << mha
+genres[0].shows << barry
 
 genres[1].shows << one_punch_man
 genres[1].shows << bojack
@@ -99,12 +110,15 @@ genres[4].shows << house_cards
 genres[4].shows << us
 genres[4].shows << quiet
 genres[4].shows << getout
+genres[4].shows << got
+genres[4].shows << barry
 
 genres[5].shows << one_punch_man
 genres[5].shows << toystory
 genres[5].shows << aladdin
 genres[5].shows << bojack
 genres[5].shows << lionking
+genres[5].shows << mha
 
 
 # demo.shows << genres[0].shows
@@ -142,3 +156,9 @@ getout.video.attach(io: videos[:getout], filename: "getout.mp4")
 getout.title_card.attach(io: title_cards[:getout], filename: "getout.jpg")
 lionking.video.attach(io: videos[:lionking], filename: "lionking.mp4")
 lionking.title_card.attach(io: title_cards[:lionking], filename: "lionking.jpg")
+got.video.attach(io: videos[:got], filename: "got.mp4")
+got.title_card.attach(io: title_cards[:got], filename: "got.jpg")
+mha.video.attach(io: videos[:mha], filename: "mha.mp4")
+mha.title_card.attach(io: title_cards[:mha], filename: "mha.jpg")
+barry.video.attach(io: videos[:barry], filename: "barry.mp4")
+barry.title_card.attach(io: title_cards[:barry], filename: "barry.jpg")
