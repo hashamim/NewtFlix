@@ -20,10 +20,12 @@ class Show extends React.Component{
     }
     changeToHovered(){
         this.props.fetchGenres();
-        this.setState({ hovered: true })
+        this.hoverInterval = setTimeout(()=>{this.setState({ hovered: true });
         this.props.setParentRow();
+        }, 250);
     }
     changeToUnHovered(){
+        clearInterval(this.hoverInterval);
         this.setState({ hovered: false })
         this.props.unsetParentRow();
     }
