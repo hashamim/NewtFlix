@@ -15,6 +15,7 @@ class GenreRow extends React.Component{
         super(props);
         this.state = {
             currentRow: 0,
+            hovered: false,
         }
     }
 
@@ -40,10 +41,12 @@ class GenreRow extends React.Component{
         return (
             <>
                 <Link to={`/browse/genres/${this.props.id}`} className="genre-title">{this.props.name}<i className="fas fa-chevron-right"></i></Link> {/* Make Clickable */}
-                <div className="genre-row">
-                    <img className="left-carousel-btn" src={window.left_chevron_image} onClick={()=>this.moveCarousel(-1)}></img>
-                    <ShowRow showsContained={this.rows[this.state.currentRow] ? this.rows[this.state.currentRow] : []} currentRow={this.props.currentGenre} setThisRow={this.props.setThisGenre} unsetThisRow={this.props.unsetThisGenre} />
-                    <img className="right-carousel-btn" src={window.right_chevron_image} onClick={() => this.moveCarousel(1)}></img>
+                <div className="genre-container" onPointerEnter={()=>this.setState({hovered: true})} onPointerLeave={()=>this.setState({hovered: false})}>
+                    {this.state.hovered ? <img className="left-carousel-btn" src={window.left_chevron_image} onClick={()=>this.moveCarousel(-1)}></img> : null}
+                    {/* <div className="genre-row"> */}
+                        <ShowRow showsContained={this.rows[this.state.currentRow] ? this.rows[this.state.currentRow] : []} currentRow={this.props.currentGenre} setThisRow={this.props.setThisGenre} unsetThisRow={this.props.unsetThisGenre} />
+                    {/* </div> */}
+                    {this.state.hovered ? <img className="right-carousel-btn" src={window.right_chevron_image} onClick={() => this.moveCarousel(1)}></img> : null}
                 </div>
             </>
         )
