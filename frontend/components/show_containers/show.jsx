@@ -46,7 +46,7 @@ class Show extends React.Component{
     }
     divClick(e){
         if(e.target.className === "show-quick-interface" || e.target.className === "show-interface"){
-            this.props.history.push(`/watch/${this.props.id}`)
+            this.props.history.push(`/watch/${this.props.show.id}`)
         }
     }
     render(){
