@@ -2,11 +2,16 @@
 
 Newtflix is meant to be a production level clone of Netflix. It implements many of the features found on the actual Netflix website such as:
 * show blocks that autoplay video on hover and have basic controls that allow the user to add the video to their list or mute and unmute the hovered video
+
+![show blocks](screenshots/show_block_gif.gif)
 * ability to query the database for partial matches of either show title, genre, or casted actors
+
+![search page](screenshots/search_gif.gif)
 * A list of shows attached to each user that updates dynamically
 * A signup page that renders errors on submit
 * videos that are stored in a remote aws server
 * A browse page that allows users to browse shows by genre
+
 ![browse page](screenshots/browse_page_gif.gif)
 
 ## How it Works
