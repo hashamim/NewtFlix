@@ -35,8 +35,8 @@ class GenreRow extends React.Component{
             this.rows.push(rows.splice(0, 5));
         }
         if (this.transRef.current) {
-            this.transRef.current.style.left = `${-this.state.currentRow * 100}vw`;
-            this.transRef.current.style.width = `${this.rows.length * 100}vw`;
+            this.transRef.current.style.left = `${-this.state.currentRow * 100}%`;
+            this.transRef.current.style.width = `${this.rows.length * 100}%`;
         }
         
         return (
