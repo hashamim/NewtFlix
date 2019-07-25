@@ -3,6 +3,8 @@ import { getShow } from '../../actions/show_actions';
 import { connect } from 'react-redux';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { createListItem, destroyListItem } from '../../actions/list_actions';
+import { makeSelectGenre } from '../../reducers/selectors';
+
 class Show extends React.Component{
     constructor(props){
         super(props);
@@ -57,7 +59,8 @@ class Show extends React.Component{
             this.myRef.current.muted = this.state.muted;
         }
 
-        const genresRender = !this.props.show.genre_ids ? null : this.props.show.genre_ids.map((genre_id,ind) => <li key={ind}>{this.props.genres[genre_id].name}</li>)
+        // const genresRender = !this.props.showData.genre_ids ? null : this.props.showData.genre_ids.map((genre_id,ind) => <li key={ind}>{this.props.genres[genre_id].name}</li>)
+        const genresRender = this.props.genres ? this.props.genres.map(({ id, name }) => <li key={id}>{name}</li>) : null;
         const hoveredElements = <>
             <video className="show-video-player" 
                 width="100%" 
@@ -65,18 +68,18 @@ class Show extends React.Component{
                 ref={this.myRef}
                 autoPlay
                 muted
-                src={this.props.show.video_url ? this.props.show.video_url : null}
+                src={this.props.showData.video_url ? this.props.showData.video_url : null}
                 >
                 Your Browser Does Not Support This Video
             </video>
             <div className="show-interface" onClick={(e)=>this.divClick(e)}>
                 <div className="show-quick-interface">
                     <div className="show-info">
-                        <Link to={`/watch/${this.props.show.id}`}>
+                        <Link to={`/watch/${this.props.showData.id}`}>
                             <img className="play-icon" src={window.play_image} />
                         </Link>
-                        <h1>{this.props.show.title}</h1>
-                        <span><h1>{this.props.show.maturity_rating}</h1></span>
+                        <h1>{this.props.showData.title}</h1>
+                        <span><h1>{this.props.showData.maturity_rating}</h1></span>
                         <ul>{genresRender}</ul>
                     </div>
                     <div className="show-actions">
@@ -98,11 +101,18 @@ class Show extends React.Component{
     }
 }
 
-const msp = (state,ownProps) => {
-    return {
-    genres: state.entities.genres,
-    isAdded: state.entities.user.showIds.includes(parseInt(ownProps.show.id)),
-}};
+// const genreSelector = selectGenre();
+const makeMsp = () => {
+    let selectGenre = makeSelectGenre();
+    const msp = (state,ownProps) => {
+        return {
+            showData: state.entities.shows[ownProps.show.id],
+            genres: selectGenre(state, ownProps),
+            isAdded: state.entities.user.showIds.includes(parseInt(ownProps.show.id)),
+        }
+    }
+    return msp;
+};
 
 const mdp = (dispatch, ownProps) => {
     return {
@@ -111,4 +121,4 @@ const mdp = (dispatch, ownProps) => {
     removeFromList: () => dispatch(destroyListItem(ownProps.show.id)),
 }}
 
-export default withRouter(connect(msp,mdp)(Show));
+export default withRouter(connect(makeMsp,mdp)(Show));
