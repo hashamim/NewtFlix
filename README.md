@@ -59,4 +59,29 @@ const Private = ({ loggedIn, path, component: Component }) => (
             <AuthRoute path="/" component={Splash}/>
         </Switch>
  ```
+ * Search is done through the search bar on the main nav bar rather than on any specific page. As a result of this, the *Main* component handles search and decides whether to render the search page and also whether to snap back to the browse page based on the contents of the search bar.
+ ```
+ handleSearch(e){
+        if(this.state.searchVal === ""){                  //if the previous state was empty go to search page
+            this.props.history.push("/browse/search");
+        }
+        this.setState({searchVal: e.target.value});
+        if (e.target.value === "") {                    // if the new state is empty go back to browse page
+            this.props.history.push("/browse");
+            return
+        }
+        this.props.search(e.target.value);      //dispatch action to rerender search slice of state
+    }
+```
+* The search is done dynamically while the user is typing, each keystroke sends a GET request to the backend API endpoint (I realize this may not be scalable and in the future will implement a timeout limiting the number of times a user keystroke sends a request during a period of time). Once the request is complete, the response is packaged into a Redux action and passed through the reducer.
 
+* The query is passed to all tables in the database using a series of left outer joins on all relevant tables:
+```
+@shows = Show
+                .joins("LEFT OUTER JOIN show_genres ON show_genres.show_id = shows.id")
+                .joins("LEFT OUTER JOIN genres ON show_genres.genre_id = genres.id")
+                .joins("LEFT OUTER JOIN castings ON castings.show_id = shows.id")
+                .joins("LEFT OUTER JOIN actors ON castings.actor_id = actors.id")
+                .where("UPPER(genres.name) LIKE UPPER(:query) OR UPPER(actors.name) LIKE UPPER(:query) OR UPPER(shows.title) LIKE UPPER(:query)", query: str)
+```
+* The relevant shows are passed back to the front end to be added to state and a list of those shows is passed to the ui slice of state for display on the search page.
