@@ -13,7 +13,7 @@ class GenrePage extends React.Component {
     }
 
     render(){
-        const shows = this.props.genre ? this.props.genre.show_ids.map((showId)=>this.props.shows[showId]) : [];
+        const shows = this.props.genre ? this.props.genre.show_ids : [];
 
         return <div className="show-page-container">
             <div className="genre-page-header">

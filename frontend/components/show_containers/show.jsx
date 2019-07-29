@@ -48,7 +48,7 @@ class Show extends React.Component{
     }
     divClick(e){
         if(e.target.className === "show-quick-interface" || e.target.className === "show-interface"){
-            this.props.history.push(`/watch/${this.props.show.id}`)
+            this.props.history.push(`/watch/${this.props.id}`)
         }
     }
     render(){
@@ -94,7 +94,7 @@ class Show extends React.Component{
         </>
         return (
             <div className={"show-container" + (this.state.hovered ? " hovered" : "")} onPointerEnter={this.changeToHovered} onPointerLeave={this.changeToUnHovered} >
-                <img className="title-card" src={this.props.show.title_card_url} />
+                <img className="title-card" src={this.props.showData.title_card_url} />
                 {this.state.hovered ? hoveredElements : null}
             </div>
         )
@@ -106,9 +106,9 @@ const makeMsp = () => {
     let selectGenre = makeSelectGenre();
     const msp = (state,ownProps) => {
         return {
-            showData: state.entities.shows[ownProps.show.id],
+            showData: state.entities.shows[ownProps.id],
             genres: selectGenre(state, ownProps),
-            isAdded: state.entities.user.showIds.includes(parseInt(ownProps.show.id)),
+            isAdded: state.entities.user.showIds.includes(parseInt(ownProps.id)),
         }
     }
     return msp;
@@ -116,9 +116,9 @@ const makeMsp = () => {
 
 const mdp = (dispatch, ownProps) => {
     return {
-    fetchGenres: () => dispatch(getShow(ownProps.show.id)),
-    addToList: () => dispatch(createListItem(ownProps.show.id)),
-    removeFromList: () => dispatch(destroyListItem(ownProps.show.id)),
+    fetchGenres: () => dispatch(getShow(ownProps.id)),
+    addToList: () => dispatch(createListItem(ownProps.id)),
+    removeFromList: () => dispatch(destroyListItem(ownProps.id)),
 }}
 
 export default withRouter(connect(makeMsp,mdp)(Show));

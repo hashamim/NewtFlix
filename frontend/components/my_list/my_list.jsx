@@ -13,8 +13,8 @@ class MyList extends React.Component {
     }
 
     render() {
-        const shows = this.props.list ? this.props.list.map((showId) => this.props.shows[showId]) : [];
-        
+        const shows = (this.props.shows.allIds.length > 0) ? this.props.list : [];
+        debugger
         return <div className="show-page-container">
             <div className="genre-page-header">
                 <h1>{this.props.list ? this.props.list.name : null}</h1>
@@ -26,6 +26,7 @@ class MyList extends React.Component {
 }
 
 const msp = (state, ownProps) => {
+        
     return {
         list: state.entities.user.showIds.slice(),
         shows: state.entities.shows,

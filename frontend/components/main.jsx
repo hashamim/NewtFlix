@@ -117,7 +117,7 @@ class Main extends React.Component{
     }
 }
 const msp = (state) => ({
-    searchShows: searchSelector(state),
+    searchShows: state.ui.search,
 })
 const mdp = (dispatch) => ({
     logout: () => dispatch(logout()),

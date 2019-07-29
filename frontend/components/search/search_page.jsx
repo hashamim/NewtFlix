@@ -6,8 +6,7 @@ class SearchPage extends React.Component{
         super(props);
     }
     render(){
-        const showList = this.props.shows ? Object.values(this.props.shows) : []
-
+        const showList = this.props.shows ? this.props.shows : [];
         return <div className="show-page-container">
             <ShowsGroup shows={showList} />
         </div>
