@@ -8,4 +8,7 @@ json.shows do
         end
     end
 end
+if @shows.empty?
+        json.shows Hash.new()
+    end
 json.search_ids show_ids
