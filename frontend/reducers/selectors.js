@@ -11,7 +11,9 @@ export const searchSelector = (state) => (
 
 const getShowGenres = (state, props) => state.entities.shows[props.id].genre_ids;
 const getGenreNames = state => state.entities.genres;
-export const makeSelectGenre = () => createSelector(
+export const makeSelectGenre = () => {
+
+    return createSelector(
     [getShowGenres, getGenreNames],
     (showGenreIds=[], genres) => {
         return showGenreIds.map( id => ({
@@ -19,7 +21,7 @@ export const makeSelectGenre = () => createSelector(
             name: genres[id].name,
         }))
     }
-)
+)}
 const getShowIds = state => state.entities.shows.allIds;
 export const selectBrowseShows = createSelector(
     [getShowIds],

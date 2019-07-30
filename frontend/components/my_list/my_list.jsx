@@ -13,11 +13,11 @@ class MyList extends React.Component {
     }
 
     render() {
-        const shows = (this.props.shows.allIds.length > 0) ? this.props.list : [];
         debugger
+        const shows = (this.props.shows.length > 0) ? this.props.list.slice() : [];
         return <div className="show-page-container">
             <div className="genre-page-header">
-                <h1>{this.props.list ? this.props.list.name : null}</h1>
+                <h1>My List</h1>
             </div>
             <ShowsGroup shows={shows} />
 
@@ -28,8 +28,8 @@ class MyList extends React.Component {
 const msp = (state, ownProps) => {
         
     return {
-        list: state.entities.user.showIds.slice(),
-        shows: state.entities.shows,
+        list: state.entities.user.showIds,
+        shows: state.entities.shows.allIds,
     }
 }
 

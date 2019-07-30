@@ -16,7 +16,7 @@ export default (state = {allIds: []}, action) => {
                     showAdded = true;
                 }
             });
-            newState = merge({}, state, action.shows);
+            newState = Object.assign({}, state, action.shows);
             if(showAdded){
                 newState.allIds = allIds;
             }

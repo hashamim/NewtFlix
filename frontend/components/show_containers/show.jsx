@@ -92,8 +92,9 @@ class Show extends React.Component{
                 </div>
             </div>
         </>
+        debugger
         return (
-            <div className={"show-container" + (this.state.hovered ? " hovered" : "")} onPointerEnter={this.changeToHovered} onPointerLeave={this.changeToUnHovered} >
+            <div className={"show-container" + (this.state.hovered ? " hovered" : "")} onPointerEnter={this.changeToHovered} onPointerLeave={this.changeToUnHovered}>
                 <img className="title-card" src={this.props.showData.title_card_url} />
                 {this.state.hovered ? hoveredElements : null}
             </div>
@@ -105,6 +106,7 @@ class Show extends React.Component{
 const makeMsp = () => {
     let selectGenre = makeSelectGenre();
     const msp = (state,ownProps) => {
+        debugger
         return {
             showData: state.entities.shows[ownProps.id],
             genres: selectGenre(state, ownProps),

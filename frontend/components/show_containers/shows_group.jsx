@@ -4,13 +4,16 @@ class ShowsGroup extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            currentRow: null,
+            currentRow: 0,
         }
     }
     setCurrentRow(ind){
-        this.setState({currentRow: ind});
+        if(this.state.currentRow !== ind){
+            this.setState({currentRow: ind});
+        }
     }
     render(){
+        debugger
         const shows = this.props.shows.slice();
         const showRows = []
         while (shows.length > 0) {
