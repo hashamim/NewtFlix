@@ -25,40 +25,6 @@ Newtflix uses a React frontend to render html elements and React-Redux to store 
  * Like the actual NetFlix site, Movies and TV Shows are laid out in groups of rows that contain individual interactive elements. Each block updates information in conjunction with get requests made to the server and get just enough information to be presented to the user and then request more information from the server when interacted with by the user, allowing for modular code.
  * Video previews autoplay in various locations of the site. Users can autoplay previews by hovering show blocks.
  * The watch page for each video has custom video controls that allow the user to do all the basic things they would do in any other video player
- * Routes prevent anonymous users from accessing private routes without logging in, and logged in users from accessing authroization routes without being logged out.
- ```javascript
- const Auth = ({loggedIn, path, component: Component}) => (
-    <Route
-        path={path}
-        render={props => (
-            loggedIn ?
-                <Redirect to='/browse' /> :
-                <Component {...props} />
-        )
-        }
-    />
-);
-
-const Private = ({ loggedIn, path, component: Component }) => (
-    <Route 
-        path={path}
-        render={props => (
-            loggedIn ?
-                <Component {...props} /> :
-                <Redirect to='/' />
-        )
-        }
-    />
-);
-```
-  * Components are linked to via React-Routes that are accessed through the main entry file of the app. 
-  ```javascript
-        <Switch>
-            <PrivateRoute path="/watch/:show_id" component={Watch} />
-            <PrivateRoute path="/browse" component={Main} />
-            <AuthRoute path="/" component={Splash}/>
-        </Switch>
- ```
  * Search is done through the search bar on the main nav bar rather than on any specific page. As a result of this, the *Main* component handles search and decides whether to render the search page and also whether to snap back to the browse page based on the contents of the search bar.
  ```
  handleSearch(e){
