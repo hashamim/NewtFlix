@@ -25,6 +25,36 @@ Newtflix uses a React frontend to render html elements and React-Redux to store 
  * Like the actual NetFlix site, Movies and TV Shows are laid out in groups of rows that contain individual interactive elements. Each block updates information in conjunction with get requests made to the server and get just enough information to be presented to the user and then request more information from the server when interacted with by the user, allowing for modular code.
  * Video previews autoplay in various locations of the site. Users can autoplay previews by hovering show blocks.
  * The watch page for each video has custom video controls that allow the user to do all the basic things they would do in any other video player
+ * Search is done through the search bar on the main nav bar rather than on any specific page. As a result of this, the Main component handles search and decides whether to render the search page and also whether to snap back to the browse page based on the contents of the search bar.
+ * Show components, the most common components found in the app are self contained and only need to have their id passed in in order to retrieve their data from Redux state The mapStateToProps function is created for each component (using the reselect library) in order to allow the use of memoization in order to prevent unnecessary re-renders.
+ ```javascript
+ //show.jsx
+ const makeMsp = () => {
+    let selectGenre = makeSelectGenre();
+    const msp = (state,ownProps) => {
+        return {
+            showData: state.entities.shows[ownProps.id],
+            genres: selectGenre(state, ownProps),
+            isAdded: state.entities.user.showIds.includes(parseInt(ownProps.id)),
+        }
+    }
+    return msp;
+};
+```
+```javascript
+//selectors.jsx
+export const makeSelectGenre = () => {
+
+    return createSelector(
+    [getShowGenres, getGenreNames],
+    (showGenreIds=[], genres) => {
+        return showGenreIds.map( id => ({
+            id,
+            name: genres[id].name,
+        }))
+    }
+)}
+```
  * Search is done through the search bar on the main nav bar rather than on any specific page. As a result of this, the *Main* component handles search and decides whether to render the search page and also whether to snap back to the browse page based on the contents of the search bar.
  ```
  handleSearch(e){
