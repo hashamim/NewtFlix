@@ -297,13 +297,14 @@
 .genre-row {
     display: flex;
     align-items: center;
-    position: absolute;
+    position: relative;
     transition: left 400ms ease-in-out;
+    padding-left: 4vw;
 }
 .row-container {
-    width: 100%;
+    width: 92vw;
     margin: 0 0 55px;
-    padding: 0 4vw;
+    /* padding: 0 4vw; */
     height: 130px;
     background-color: #141414;
     display: flex;

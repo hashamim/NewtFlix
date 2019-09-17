@@ -35,15 +35,15 @@ class GenreRow extends React.Component{
             this.rows.push(rows.splice(0, 5));
         }
         if (this.transRef.current) {
-            this.transRef.current.style.left = `${-this.state.currentRow * 100}%`;
-            this.transRef.current.style.width = `${this.rows.length * 100}%`;
+            this.transRef.current.style.left = `${-this.state.currentRow * 92}vw`;
+            this.transRef.current.style.width = `${this.rows.length * 92 + 4}vw`;
         }
         
         return (
             <>
                 <Link to={`/browse/genres/${this.props.id}`} className="genre-title">{this.props.name}<i className="fas fa-chevron-right"></i></Link> {/* Make Clickable */}
                 <div className="genre-container" onPointerEnter={()=>this.setState({hovered: true})} onPointerLeave={()=>this.setState({hovered: false})}>
-                    {this.state.hovered ? <img className="left-carousel-btn" src={window.left_chevron_image} onClick={()=>this.moveCarousel(-1)}></img> : null}
+                    {this.state.hovered && (this.state.currentRow > 0)? <img className="left-carousel-btn" src={window.left_chevron_image} onClick={()=>this.moveCarousel(-1)}></img> : null}
                     <div className={"genre-slider" + (this.props.currentGenre ? " active" : "")}>
                         <div className="genre-row" ref={this.transRef}>
                             {this.rows.map((row,ind)=>
