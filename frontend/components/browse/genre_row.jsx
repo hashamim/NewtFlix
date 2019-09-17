@@ -16,10 +16,10 @@ class GenreRow extends React.Component{
         let ind = this.state.currentRow;
         ind += num;
         if(ind < 0){
-            this.transRef.current.style.left = "25vw";
+            this.transRef.current.style.left = "15vw";
             setTimeout(() => this.setState({ currentRow: 0 }), 300);
         } else if (ind >= this.rows.length){
-            this.transRef.current.style.left = `-${(this.rows.length - 1) * 100 + 25}vw`;
+            this.transRef.current.style.left = `-${(this.rows.length - 1) * 100 + 15}vw`;
             setTimeout(() => this.setState({ currentRow: this.rows.length-1 }), 300);
         } else {
             this.setState({
